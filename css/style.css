@@ -1594,6 +1594,11 @@ pre {
     border: 0; }
 
 .form {
+  max-width: 810px;
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
 }
