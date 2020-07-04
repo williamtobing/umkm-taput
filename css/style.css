@@ -458,6 +458,13 @@ pre {
     .container {
       max-width: 1140px; } }
 
+.container-form {
+  margin: 0 auto;
+  max-width: 540px;
+  width: 100%;
+  height: auto;
+}
+
 .container-fluid {
   width: 100%;
   padding-right: 15px;
