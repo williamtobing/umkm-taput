@@ -2086,6 +2086,9 @@ fieldset:disabled a.btn {
   pointer-events: none; }
 
 .btn-primary {
+  max-width: 270px;
+  width: 100%;
+  height: auto;
   color: #fff;
   background-color: #007bff;
   border-color: #007bff; }
