@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/">UMKM TAPUT</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a href="/" class="nav-link">Beranda</a></li>
+            <li class="nav-item"><a href="tentang.html" class="nav-link">Tentang</a></li>
+            <li class="nav-item"><a href="produk.html" class="nav-link">Produk</a></li>
+            <li class="nav-item"><a href="kegiatan.html" class="nav-link">Kegiatan</a></li>
+          <!-- <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> -->
+              <% if(user) {%>
+                <li class="nav-item cta"><a href="/dashboard" class="nav-link">Dashboard</a></li>
+            <%}else {%>
+                <li class="nav-item cta"><a href="/user/login" class="nav-link">Masuk atau Daftar</a></li>
+            <%}%>
+        </ul>
+      </div>
+    </div>
+  </nav>

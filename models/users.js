@@ -34,6 +34,9 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : true,
         trim : true
+    },
+    rememberMe : {
+        type : String
     }
 }, {
     timestamps : true
