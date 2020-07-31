@@ -37,6 +37,13 @@ const userSchema = new mongoose.Schema({
     },
     rememberMe : {
         type : String
+    },
+    isMitra : {
+        type : String,
+        default : "0", // 0 for waiting 1 for approved 9 for rejected
+    },
+    isAdmin : {
+        type : Boolean,
     }
 }, {
     timestamps : true
