@@ -117,8 +117,8 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="">No. Telepon</label>
-                                        <input type="text" class="form-control" placeholder="Gunakan format 08xxxxxxxxxx" required>
+                                        <label for="noTelepon">No. Telepon</label>
+                                        <input type="text" id="noTelepon" class="form-control" placeholder="Gunakan format 08xxxxxxxxxx" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -238,6 +238,16 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
+
+<script>
+    var noTelepon = document.getElementById('noTelepon');
+    noTelepon.addEventListener("keypress", function (evt) {
+        if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57)
+        {
+            evt.preventDefault();
+        }
+    });
+</script>
 
 </body>
 </html>
