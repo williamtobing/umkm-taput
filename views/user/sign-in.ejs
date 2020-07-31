@@ -1,38 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Masuk atau Daftar - UMKM TAPUT</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Miss+Fajardose&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/ionicons.min.css">
-
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-    
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
-	  <style>
-		  .link:hover{
-			  color: black;
-		  }
-	  </style>
-  </head>
+  <%- include('../partials/head') %>
   <body>
     <div class="py-1 bg-black top">
     	<div class="container">
@@ -83,7 +51,7 @@
 	  </nav>
     <!-- END nav -->
     
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.webp');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.webp');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -95,7 +63,7 @@
       </div>
     </section>
 	
-		<section class="ftco-section ftco-no-pt ftco-no-pb testimony-section img" style="background-image: url(images/bg_5.webp);">
+		<section class="ftco-section ftco-no-pt ftco-no-pb testimony-section img" style="background-image: url(/images/bg_5.webp);">
 			<div class="overlay"></div>
 		  <div class="container">
 			<div class="container-fluid px-0">
@@ -127,7 +95,7 @@
 								<div class="form-group text-center">
 									<a href="dashboard-beta.html" class="btn btn-primary py-3 px-5">Masuk</a>
 									<br><br>
-									<a class="link" href="sign-up.html">Daftar</a>
+									<a class="link" href="/user/register">Daftar</a>
 								</div>
 							</div>
 						</div>
@@ -183,19 +151,19 @@
 				   <div class="ftco-footer-widget mb-4">
 					<h2 class="ftco-heading-2">Instagram</h2>
 					<div class="thumb d-sm-flex">
-						  <a href="#" class="thumb-menu img" style="background-image: url(images/insta-1.webp);">
+						  <a href="#" class="thumb-menu img" style="background-image: url(/images/insta-1.webp);">
 						  </a>
-						  <a href="#" class="thumb-menu img" style="background-image: url(images/insta-2.webp);">
+						  <a href="#" class="thumb-menu img" style="background-image: url(/images/insta-2.webp);">
 						  </a>
-						  <a href="#" class="thumb-menu img" style="background-image: url(images/insta-3.webp);">
+						  <a href="#" class="thumb-menu img" style="background-image: url(/images/insta-3.webp);">
 						  </a>
 					  </div>
 					  <div class="thumb d-flex">
-						  <a href="#" class="thumb-menu img" style="background-image: url(images/insta-4.webp);">
+						  <a href="#" class="thumb-menu img" style="background-image: url(/images/insta-4.webp);">
 						  </a>
-						  <a href="#" class="thumb-menu img" style="background-image: url(images/insta-5.webp);">
+						  <a href="#" class="thumb-menu img" style="background-image: url(/images/insta-5.webp);">
 						  </a>
-						  <a href="#" class="thumb-menu img" style="background-image: url(images/insta-6.webp);">
+						  <a href="#" class="thumb-menu img" style="background-image: url(/images/insta-6.webp);">
 						  </a>
 					  </div>
 				  </div>
@@ -212,27 +180,21 @@
 		  </footer>
   
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  	<!-- loader -->
+  	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+  	<%- include('../partials/script') %>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
+	<% if(successDone.length > 0) {%>
+		<script>
+			swal({
+				title : "Success",
+				icon: "success",
+				text : "<%=successDone%>",
+				button: "Okay",
+			});
+		</script>
+	<%}%>
     
   </body>
 </html>

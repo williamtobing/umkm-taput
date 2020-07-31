@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODBURI || 'mongodb://localhost/umkmtaput', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex : true
 })
 .then(() => {
     console.log("Database Connected");
