@@ -5,6 +5,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 const session = require('express-session'); 
+const methodOverride = require('method-override');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -36,7 +37,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate('remember-me'));
-
+app.use(methodOverride('_method'));
 app.use(function (req,res, next){
     res.locals.user = req.user;
     res.locals.errorAuth = req.flash('errorAuth');

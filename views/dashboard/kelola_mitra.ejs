@@ -1,33 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Dashboard - UMKM TAPUT</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Miss+Fajardose&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/ionicons.min.css">
-
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <%- include('../partials/head')  %> 
 <body>
 <div class="py-1 bg-black top">
     <div class="container">
@@ -57,28 +30,11 @@
         </div>
     </div>
 </div>
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">UMKM TAPUT</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-        </button>
-
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="index.html" class="nav-link">Beranda</a></li>
-                <li class="nav-item"><a href="tentang.html" class="nav-link">Tentang</a></li>
-                <li class="nav-item"><a href="produk.html" class="nav-link">Produk</a></li>
-                <li class="nav-item"><a href="kegiatan.html" class="nav-link">Kegiatan</a></li>
-                <!-- <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> -->
-                <li class="nav-item cta"><a href="sign-in.html" class="nav-link">Masuk atau Daftar</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<!-- Start NAv -->
+<%- include('../partials/navbar')  %>
 <!-- END nav -->
 
-<section class="hero-wrap" style="background-image: url('images/bg_1.webp');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap" style="background-image: url('/images/bg_1.webp');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -113,80 +69,81 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td><span style="cursor: pointer" class="icon icon-edit" data-toggle="modal" data-target=".bd-example-modal-lg"></span></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td><span style="cursor: pointer" class="icon icon-edit" data-toggle="modal" data-target=".bd-example-modal-lg"></span></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td><span style="cursor: pointer" class="icon icon-edit" data-toggle="modal" data-target=".bd-example-modal-lg"></span></td>
-                    </tr>
+                        <% listData.forEach((data, index) =>{ %>
+                            <tr>
+                                <th scope="row"><%=index +1%></th>
+                                <td><%=data.owner.namaLengkap%></td>
+                                <td><%=data.tanggalDibuat%></td>
+                                <td>
+                                    <% if(!data.status || data.status == '0') {%>
+                                        <span style="color: orange; font-weight: bold;">Menunggu</span>
+                                    <%} else if(data.status == "1") {%>
+                                        <span style="color: green; font-weight: bold;">Diterima</span>
+                                    <%} else if(data.status == "9") {%>
+                                        <span style="color: red; font-weight: bold;">Ditolak</span>
+                                    <%}%>
+                                </td>
+                                <td><span style="cursor: pointer" class="icon icon-edit" data-toggle="modal" data-target=".bd-example-modal-lg<%=index%>"></span></td>
+                            </tr>
+                            <!-- MODAL -->
+                            <div class="modal bd-example-modal-lg<%=index%>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Data Calon Mitra</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Nama Mitra</label>
+                                                    <br><%=data.owner.namaLengkap%>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Nama UMKM</label>
+                                                    <br><%=data.namaUMKM%>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">NIK</label>
+                                                    <br><%=data.nik%>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Foto KTP</label>
+                                                    <br><a href="/dashboard/request/mitra/download/<%=data._id%>"><img src="/dashboard/request/mitra/download/<%=data._id%>" alt="Foto KTP.jpngwebp" width="200px"></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Tentang</label>
+                                                    <br><%=data.tentang%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <% if(data.status !== "1" && data.status !== "9") {%>
+                                                <form action="/dashboard/request/mitra/update/<%=data._id%>?_method=PATCH" method="POST">
+                                                    <button type="submit" name="status" value="9" class="btn btn-danger">Tolak</button>
+                                                    <button type="submit" name="status" value="1" class="btn btn-success">Terima</button>
+                                                </form>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <%})%>
                     </tbody>
                 </table>
 
-                <!-- MODAL -->
-                <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Data Calon Mitra</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Nama Mitra</label>
-                                        <br>Anu Anu Anu
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Nama UMKM</label>
-                                        <br>Anu Anu Anu
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="">NIK</label>
-                                        <br>123456789012345
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Foto KTP</label>
-                                        <br><img src="" alt="Foto KTP.jpngwebp" width="858" height="480">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Tentang</label>
-                                        <br>Anu anu anu
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-danger">Tolak</button>
-                                <button type="button" class="btn btn-success">Terima</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
             </div>
 
@@ -271,23 +228,18 @@
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/jquery.waypoints.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/jquery.animateNumber.min.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script src="js/jquery.timepicker.min.js"></script>
-<script src="js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="js/google-map.js"></script>
-<script src="js/main.js"></script>
+<%- include('../partials/script')  %>
+
+<% if(successDone.length > 0) {%>
+    <script>
+        swal({
+            title : "Success",
+            icon: "success",
+            text : "<%=successDone%>",
+            button: "Okay",
+        });
+    </script>
+<%}%>
 
 </body>
 </html>

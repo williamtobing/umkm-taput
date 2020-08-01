@@ -27,7 +27,8 @@ const requestMitraSchema = new mongoose.Schema({
     owner : {
         type : mongoose.Schema.Types.ObjectId,
         required : true,
-        trim : true
+        trim : true,
+        ref : 'Users'
     },
 }, {
     timestamps : true

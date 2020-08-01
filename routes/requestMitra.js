@@ -85,6 +85,30 @@ router.post('/request/mitra', auth, upload.single('fotoKtp'), async (req, res) =
     res.redirect('/dashboard/request/mitra');
 });
 
+// Update status
+router.patch('/request/mitra/update/:id', auth, async (req, res) => {
+    try {
+        const request = await RequestMitra.findByIdAndUpdate(req.params.id, {...req.body}, { new : true}).populate('owner').exec();
+        if(req.body.status === "1") {
+            request.owner.isMitra = true;
+            await request.owner.save();
+        } else if(req.body.status === "9") {
+            request.owner.isMitra = false;
+            await request.owner.save();
+        } else {
+            return res.json({
+                error : "Tidak bisa"
+            })
+        }
+        console.log(request);
+        req.flash('success', 'Berhasil melakukan aksi pada request');
+        res.redirect('/dashboard/mitra/kelola');
+    } catch(e) {
+        res.json({
+            message : e.message
+        })
+    }
+});
 
 
 module.exports = router;
