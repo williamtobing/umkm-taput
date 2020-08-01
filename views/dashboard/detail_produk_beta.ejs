@@ -56,7 +56,7 @@
             <div class="col-lg-12 ftco-animate">
                 <h2 class="mb-3 text-center"><%= produk.judul %></h2>
                 <p class="text-center">
-                    <img src="/dashboard/produk/gambar/<%= produk._id %>" alt="" class="img-fluid">
+                    <img width="500" height="500" src="/dashboard/produk/gambar/<%= produk._id %>" alt="" class="img-fluid">
                 </p>
                 
                 <% produk.formatted.forEach(pf => { %>
@@ -65,7 +65,7 @@
 
                 <div class="about-author d-flex p-4 bg-light">
                     <div class="bio mr-5">
-                        <img src="/user/profile/gambar/<%= produk.owner._id %>" alt="Igambar owner" class="img-fluid mb-4">
+                        <img width="200" height="200" src="/user/profile/gambar/<%= produk.owner._id %>" alt="Igambar owner" class="img-fluid mb-4">
                     </div>
                     <div class="desc">
                         <h3><%=produk.owner.namaLengkap%></h3>
