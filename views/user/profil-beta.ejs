@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include('../partials/head') %>
+  <style>
+	  .mystyle {
+		width: 100%;
+		padding: 25px;
+		background-color: coral;
+		color: white;
+		font-size: 25px;
+		box-sizing: border-box;
+		}
+  </style>
   <body>
     <div class="py-1 bg-black top">
     	<div class="container">
@@ -82,49 +92,57 @@
 						Pelanggan
 					<%}%>
 				</span><br>
-				<a href="update-profile-beta.html" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary m-3">Ubah Profil</a>
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-					  <div class="modal-content">
-						<div class="modal-header">
-						  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						  </button>
-						</div>
-						<div class="modal-body">
-						  ...
-						</div>
-						<div class="modal-footer">
-						  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						  <button type="button" class="btn btn-primary">Save changes</button>
-						</div>
-					  </div>
-					</div>
-				  </div>
+				<button id="ubahProfilButton" onclick="myFunction()" class="btn btn-primary m-3">Ubah Profil</button>
+				<button id="batalUbahButton" onclick="myFunction()" class="btn btn-primary m-3 d-none">Batal Mengubah</button>
               </div>
             </div>
-          </div>
+		  </div>
+		  
 
-          <div class="col-md-8 item">
-            <div class="testimony-wrap pb-5">
-              <div class="text">
-                <p class="name">Email</p>
-                <span class="position" style="text-transform: lowercase;"><%= user.email %></span>
-                <p class="name">Nomor Telepon</p>
-                <span class="position" style="letter-spacing: 1px;"><%=user.noTelepon%></span>
-                <p class="name">Deskripsi</p>
-                <p class="mb-4">
+		<!-- Profile Description -->
+		<div class="col-md-8 item" id="profileDesc">
+			<div class="testimony-wrap pb-5">
+				<div class="text">
+				<p class="name">Email</p>
+				<span class="position" style="text-transform: lowercase;"><%= user.email %></span>
+				<p class="name">Nomor Telepon</p>
+				<span class="position" style="letter-spacing: 1px;"><%=user.noTelepon%></span>
+				<p class="name">Deskripsi</p>
+				<p class="mb-4">
 					<% if(!user.deskripsi) {%>
 						Belum ada Deskripsi
 					<%} else {%>
 						<%=user.deskripsi%>
 					<%}%>
 				</p>
-              </div>
-            </div>
-          </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Profile Edit -->
+		<div class="col-md-8 item d-none" id="profileEdit">
+			<div class="testimony-wrap pb-5">
+				<div class="text">
+				<form action="" class="form-group">
+					<p class="name">Email</p>
+					<span class="position" style="text-transform: lowercase;"><%= user.email %></span>
+					<p class="name">Gambar Profil</p>
+					<input class="form-control" type="file" name="gambar" value="">
+					<p class="name">Nama Lengkap</p>
+					<input class="form-control" type="text" name="namaLengkap" value="<%=user.namaLengkap%>">
+					<p class="name">Nomor Telepon</p>
+					<input class="form-control" type="text" name="noTelepon" value="<%=user.noTelepon%>">
+					<p class="name">Deskripsi</p>
+					<textarea placeholder="Deskripsi" rows="5" class="form-control" type="text" name="deskripsi">
+						<% if(user.deskripsi) {%>
+							<%=user.deskripsi%>
+						<%}%>
+					</textarea>
+					<button onclick="myFunction()" class="btn btn-primary mt-3">Simpan Perubahan</button>
+				</form>
+				</div>
+			</div>
+		</div>
 
         </div>
       </div>
@@ -139,6 +157,20 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
   <%- include('../partials/script') %>
+
+  	<script>
+		function myFunction() {
+			var profileDesc = document.getElementById("profileDesc");
+			var profileEdit = document.getElementById("profileEdit");
+			var ubahProfilButton = document.getElementById("ubahProfilButton");
+			var batalUbahButton = document.getElementById("batalUbahButton");
+			profileDesc.classList.toggle("d-none");
+			profileEdit.classList.toggle("d-block");
+
+			ubahProfilButton.classList.toggle("d-none");
+			batalUbahButton.classList.toggle("d-block");
+		}
+	</script>
     
   </body>
 </html>
