@@ -62,6 +62,12 @@ userSchema.virtual('mitra_request', {
     foreignField : 'owner'
 });
 
+userSchema.virtual('produk_me', {
+    ref : 'Produk',
+    localField : '_id',
+    foreignField : 'owner'
+});
+
 userSchema.pre('save', async function(next){
     const user = this;
     if(user.isModified('password')){

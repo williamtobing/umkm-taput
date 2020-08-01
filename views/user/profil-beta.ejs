@@ -79,10 +79,15 @@
         <div class="row">
           <div class="col-md-4 item">
             <div class="testimony-wrap text-center pb-5">
-			<a href="/user/profile/gambar/<%=user._id%>">
-				<div class="user-img mb-4" style="background-image: url(/user/profile/gambar/<%=user._id%>)">
-				</div>
-			</a>
+				<% if(user.gambar !== undefined) {%>
+					<a href="/user/profile/gambar/<%=user._id%>">
+						<div class="user-img mb-4" style="background-image: url(/user/profile/gambar/<%=user._id%>)">
+						</div>
+					</a>
+				<%} else {%>
+					<div class="user-img mb-4" style="background-image: url(/images/profil1.PNG)">
+					</div>
+				<%}%>
               <div class="text p-3">
                 <p class="name"><%=user.namaLengkap%></p>
                 <span class="position">

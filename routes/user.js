@@ -77,10 +77,10 @@ router.get('/profil', auth, (req, res) => {
 
 const upload = multer({
     limits : {
-        fileSize : 1000000  
+        fileSize : 1024*1024*6  
     },
     fileFilter(req, file, cb) {
-        if(!file.originalname.match(/\.jpg|jpeg|png/)){
+        if(!file.originalname.toLowerCase().match(/\.jpg|jpeg|png/)){
             return cb(new Error('Please upload an image')) ;
         }
 
