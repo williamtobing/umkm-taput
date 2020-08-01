@@ -69,4 +69,10 @@ router.post('/logout', auth, (req, res) => {
     res.redirect('/user/login');
 });
 
+router.get('/profil', auth, (req, res) => {
+    res.render('user/profil-beta', {
+        title : "Profil"
+    });
+});
+
 module.exports = router;

@@ -196,6 +196,17 @@
 		</script>
 	<%}%>
 
+	<% if(errorFailed.length > 0) {%>
+		<script>
+			swal({
+				title : "Error",
+				icon: "error",
+				text : "<%=errorFailed%>",
+				button: "Okay",
+			});
+		</script>
+	<%}%>
+
 	
     
   </body>
