@@ -15,4 +15,8 @@ router.get('/tambah', auth, (req, res) => {
     });
 });
 
+router.post('/tambah', auth, (req, res) => {
+    console.log(req.body);
+});
+
 module.exports = router;

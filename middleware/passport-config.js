@@ -51,7 +51,7 @@ module.exports = function(passport) {
 
     // Invalidated after being used
     const issueToken = async (user, done) => {
-        console.log('issuesToken called', user);
+        // console.log('issuesToken called', user);
         const token = uuid.v4();
         user.rememberMe = token;
         try {

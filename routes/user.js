@@ -51,7 +51,6 @@ router.post('/login', (req, res, next) => {
         if(!req.user.rememberMe) {
             req.user.rememberMe = uuid.v4();
             await req.user.save();
-            console.log(req.user);
         }
         res.cookie('remember_me', req.user.rememberMe, {
             path: '/',
