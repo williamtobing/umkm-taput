@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const requestMitraSchema = new mongoose.Schema({
+    namaUMKM : {
+        type : String,
+        required : true,
+        trim : true
+    },
     nik : {
         type : String,
         required : true,
