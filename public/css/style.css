@@ -4624,7 +4624,10 @@ a.close.disabled {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  outline: 0; }
+  outline: 0;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */}
 
 .modal-dialog {
   position: relative;
@@ -4664,6 +4667,7 @@ a.close.disabled {
     content: ""; }
 
 .modal-content {
+  z-index: 1040;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4678,20 +4682,24 @@ a.close.disabled {
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
-  outline: 0; }
+  outline: 0;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s; }
 
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1040;
-  width: 100vw;
-  height: 100vh;
-  background-color: #000; }
-  .modal-backdrop.fade {
-    opacity: 0; }
-  .modal-backdrop.show {
-    opacity: 0.5; }
+/*.modal-backdrop {*/
+/*  position: fixed;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  z-index: 1040;*/
+/*  width: 100vw;*/
+/*  height: 100vh;*/
+/*  background-color: #000; }*/
+/*  .modal-backdrop.fade {*/
+/*    opacity: 0; }*/
+/*  .modal-backdrop.show {*/
+/*    opacity: 0.5; }*/
 
 .modal-header {
   display: -webkit-box;
@@ -4767,6 +4775,80 @@ a.close.disabled {
 @media (min-width: 1200px) {
   .modal-xl {
     max-width: 1140px; } }
+
+/* MODAL CUSTOM */
+
+/* The Modal (background) */
+/*.modal {*/
+/*  display: none; !* Hidden by default *!*/
+/*  position: fixed; !* Stay in place *!*/
+/*  z-index: 1; !* Sit on top *!*/
+/*  padding-top: 100px; !* Location of the box *!*/
+/*  left: 0;*/
+/*  top: 0;*/
+/*  width: 100%; !* Full width *!*/
+/*  height: 100%; !* Full height *!*/
+/*  overflow: auto; !* Enable scroll if needed *!*/
+/*  background-color: rgb(0,0,0); !* Fallback color *!*/
+/*  background-color: rgba(0,0,0,0.4); !* Black w/ opacity *!*/
+/*}*/
+
+/* Modal Content */
+/*.modal-content {*/
+/*  position: relative;*/
+/*  background-color: #fefefe;*/
+/*  margin: auto;*/
+/*  padding: 0;*/
+/*  border: 1px solid #888;*/
+/*  width: 80%;*/
+/*  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);*/
+/*  -webkit-animation-name: animatetop;*/
+/*  -webkit-animation-duration: 0.4s;*/
+/*  animation-name: animatetop;*/
+/*  animation-duration: 0.4s*/
+/*}*/
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*.modal-header {*/
+/*  padding: 2px 16px;*/
+/*  background-color: #5cb85c;*/
+/*  color: white;*/
+/*}*/
+
+/*.modal-body {padding: 2px 16px;}*/
+
+/*.modal-footer {*/
+/*  padding: 2px 16px;*/
+/*  background-color: #5cb85c;*/
+/*  color: white;*/
+/*}*/
+
+/* END MODAL CUSTOM */
 
 .tooltip {
   position: absolute;
@@ -8846,6 +8928,10 @@ textarea.form-control {
 
 .ftco-bg-dark {
   background: #3c312e; }
+
+.down-layer{
+  z-index: -1 !important;
+}
 
 .ftco-footer {
   font-size: 14px;
