@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
         required : true,
         trim : true
     },
+    deskripsi : {
+        type : String,
+        trim : true
+    },
     rememberMe : {
         type : String
     },

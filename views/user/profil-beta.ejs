@@ -50,7 +50,7 @@
         <div class="row no-gutters slider-text align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
             <h1 class="mb-2 bread">Akun Profil</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="dashboard-beta.html">Dashboard <i class="ion-ios-arrow-forward"></i></a></span> <span>Profil <i class="ion-ios-arrow-forward"></i></span></p>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/dashboard">Dashboard <i class="ion-ios-arrow-forward"></i></a></span> <span>Profil <i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
       </div>
@@ -79,8 +79,10 @@
         <div class="row">
           <div class="col-md-4 item">
             <div class="testimony-wrap text-center pb-5">
-              <div class="user-img mb-4" style="background-image: url(/images/person_3.webp)">
-              </div>
+			<a href="/user/profile/gambar/<%=user._id%>">
+				<div class="user-img mb-4" style="background-image: url(/user/profile/gambar/<%=user._id%>)">
+				</div>
+			</a>
               <div class="text p-3">
                 <p class="name"><%=user.namaLengkap%></p>
                 <span class="position">
@@ -123,7 +125,7 @@
 		<div class="col-md-8 item d-none" id="profileEdit">
 			<div class="testimony-wrap pb-5">
 				<div class="text">
-				<form action="" class="form-group">
+				<form action="/user/profile/update" class="form-group" method="POST" enctype="multipart/form-data">
 					<p class="name">Email</p>
 					<span class="position" style="text-transform: lowercase;"><%= user.email %></span>
 					<p class="name">Gambar Profil</p>
@@ -133,12 +135,8 @@
 					<p class="name">Nomor Telepon</p>
 					<input class="form-control" type="text" name="noTelepon" value="<%=user.noTelepon%>">
 					<p class="name">Deskripsi</p>
-					<textarea placeholder="Deskripsi" rows="5" class="form-control" type="text" name="deskripsi">
-						<% if(user.deskripsi) {%>
-							<%=user.deskripsi%>
-						<%}%>
-					</textarea>
-					<button onclick="myFunction()" class="btn btn-primary mt-3">Simpan Perubahan</button>
+					<textarea placeholder="Deskripsi" rows="5" class="form-control" type="text" name="deskripsi"><% if(user.deskripsi) {%><%=user.deskripsi%><%}%></textarea>
+					<button class="btn btn-primary mt-3">Simpan Perubahan</button>
 				</form>
 				</div>
 			</div>
@@ -171,6 +169,29 @@
 			batalUbahButton.classList.toggle("d-block");
 		}
 	</script>
+
+	<% if(successDone.length > 0) {%>
+		<script>
+			swal({
+				title : "Success",
+				icon: "success",
+				text : "<%=successDone%>",
+				button: "Okay",
+			});
+		</script>
+	<%}%>
+
+	<% if(errorFailed.length > 0) {%>
+		<script>
+			swal({
+				title : "Error",
+				icon: "error",
+				text : "<%=errorFailed%>",
+				button: "Okay",
+			});
+		</script>
+	<%}%>
+
     
   </body>
 </html>
