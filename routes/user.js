@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const router = new express.Router();
+const multer = require('multer');
 const uuid = require('uuid');
 
 const { auth } = require('./../middleware/auth');
@@ -67,6 +68,64 @@ router.post('/logout', auth, (req, res) => {
     req.logout();
     res.cookie('remember_me', '')
     res.redirect('/user/login');
+});
+
+router.get('/profil', auth, (req, res) => {
+    res.render('user/profil-beta', {
+        title : "Profil"
+    });
+});
+
+const upload = multer({
+    limits : {
+        fileSize : 1000000  
+    },
+    fileFilter(req, file, cb) {
+        if(!file.originalname.match(/\.jpg|jpeg|png/)){
+            return cb(new Error('Please upload an image')) ;
+        }
+
+        cb(undefined, true);
+    }
+});
+
+router.get('/profile/gambar/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if(!user || !user.gambar) {
+            throw new Error();
+        }
+        res.set('Content-Type' , 'image/jpg');
+        res.send(user.gambar);
+    } catch(e) {
+        res.status(404).send(e);
+    }
+});
+
+
+router.post('/profile/update', upload.single('gambar'), async (req, res) => {
+    try {
+        if(req.file !== undefined) {
+            req.user.gambar = req.file.buffer;
+            req.user.namaLengkap = req.body.namaLengkap;
+            req.user.noTelepon = req.body.noTelepon;
+            req.user.deskripsi = req.body.deskripsi;
+            await req.user.save();
+        } else {
+            req.user.namaLengkap = req.body.namaLengkap;
+            req.user.noTelepon = req.body.noTelepon;
+            req.user.deskripsi = req.body.deskripsi;
+            await req.user.save();
+        }
+        req.flash('success', 'Berhasil mengupdate profil')
+        res.redirect('/user/profil');
+    } catch(e) {
+        req.flash('error', e.message);
+        res.redirect('/user/profil');
+    }
+}, (error, req, res, next) => {
+    req.flash('error', error.message);
+    res.redirect('/user/profil');
 });
 
 module.exports = router;

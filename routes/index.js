@@ -9,4 +9,10 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/tentang', (req, res) => {
+    res.render('tentang', {
+        title : "Tentang"
+    })
+});
+
 module.exports = router;

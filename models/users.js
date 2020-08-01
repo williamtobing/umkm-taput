@@ -35,15 +35,22 @@ const userSchema = new mongoose.Schema({
         required : true,
         trim : true
     },
+    deskripsi : {
+        type : String,
+        trim : true
+    },
     rememberMe : {
         type : String
     },
     isMitra : {
-        type : String,
-        default : "0", // 0 for waiting 1 for approved 9 for rejected
+        type : Boolean,
+        default : false, // 0 for waiting 1 for approved 9 for rejected
     },
     isAdmin : {
         type : Boolean,
+    },
+    gambar : {
+        type : Buffer
     }
 }, {
     timestamps : true
