@@ -100,6 +100,19 @@ router.get('/profile/gambar/:id', async (req, res) => {
     }
 });
 
+router.get('/profile/umkm/gambar/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if(!user || !user.umkm.gambarUMKM) {
+            throw new Error();
+        }
+        res.set('Content-Type' , 'image/jpg');
+        res.send(user.umkm.gambarUMKM);
+    } catch(e) {
+        res.status(404).send(e);
+    }
+});
+
 
 router.post('/profile/update', upload.single('gambar'), async (req, res) => {
     try {
@@ -124,6 +137,31 @@ router.post('/profile/update', upload.single('gambar'), async (req, res) => {
 }, (error, req, res, next) => {
     req.flash('error', error.message);
     res.redirect('/user/profil');
+});
+
+router.post('/profile/umkm/update', upload.single('gambarUMKM'), async (req, res) => {
+    try {
+        if(req.file !== undefined) {
+            req.user.umkm.gambarUMKM = req.file.buffer;
+            req.user.umkm.namaUMKM = req.body.umkm.namaUMKM;
+            req.user.noTelepon = req.body.noTelepon;
+            req.user.umkm.tentang = req.body.umkm.tentang;
+            await req.user.save();
+        } else {
+            req.user.umkm.namaUMKM = req.body.umkm.namaUMKM;
+            req.user.noTelepon = req.body.noTelepon;
+            req.user.umkm.tentang = req.body.umkm.tentang;
+            await req.user.save();
+        }
+        req.flash('success', 'Berhasil mengupdate profil')
+        res.redirect('/dashboard/umkm');
+    } catch(e) {
+        req.flash('error', e.message);
+        res.redirect('/dashboard/umkm');
+    }
+}, (error, req, res, next) => {
+    req.flash('error', error.message);
+    res.redirect('/dashboard/umkm');
 });
 
 module.exports = router;

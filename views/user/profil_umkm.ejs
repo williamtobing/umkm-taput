@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head') %>
+  <style>
+	  .mystyle {
+		width: 100%;
+		padding: 25px;
+		background-color: coral;
+		color: white;
+		font-size: 25px;
+		box-sizing: border-box;
+		}
+  </style>
+  <body>
+    <div class="py-1 bg-black top">
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+	    		<div class="col-lg-12 d-block">
+		    		<div class="row d-flex">
+						<marquee direction="right">
+		    			<div class="col-md pr-4 d-flex topper align-items-center">
+					    	<!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div> -->
+							<div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+							<!-- <span class="text">+ 1235 2355 98</span> -->
+							<span class="text"></span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div> -->
+							<div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+							<!-- <span class="text">youremail@email.com</span> -->
+							<span class="text">This website is still under development.</span>
+					    </div>
+					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
+						    <!-- <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span> <span>8:00AM - 9:00PM</span></p> -->
+							<p class="mb-0 register-link"><span></span> <span></span> <span></span></p>
+						</div>
+						</marquee>
+				    </div>
+			    </div>
+		    </div>
+		  </div>
+	</div>
+	<!-- Start Nav -->
+	<%- include('../partials/navbar') %>
+    <!-- END nav -->
+    
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.webp');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Akun Profil</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/dashboard">Dashboard <i class="ion-ios-arrow-forward"></i></a></span> <span>Profil <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- <table border="1">
+                        <tr>
+                            <td>aa</td>
+                            <td>aa</td>
+                        </tr>
+                        <tr>
+                            <td>aa</td>
+                            <td>aa</td>
+                        </tr>
+                    </table> -->
+        
+    <section class="ftco-section testimony-section img" style="background-image: url(/images/bg_5.webp);">
+			<div class="overlay"></div>
+      <div class="container">
+        <!-- <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+          	<span class="subheading">Testimony</span>
+            <h2 class="mb-4">Keunggulan Produk</h2>
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="col-md-4 item">
+            <div class="testimony-wrap text-center pb-5">
+				<% if(user.umkm.gambarUMKM !== undefined) {%>
+					<a href="/user/profile/umkm/gambar/<%=user._id%>">
+						<div class="user-img mb-4" style="background-image: url(/user/profile/umkm/gambar/<%=user._id%>)">
+						</div>
+					</a>
+				<%} else {%>
+					<div class="user-img mb-4" style="background-image: url(/images/profil1.PNG)">
+					</div>
+                <%}%>
+                <p class="name">Gambar UMKM</p>
+              <div class="text p-3">
+				<button id="ubahProfilButton" onclick="myFunction()" class="btn btn-primary m-3">Ubah Profil</button>
+				<button id="batalUbahButton" onclick="myFunction()" class="btn btn-primary m-3 d-none">Batal Mengubah</button>
+              </div>
+            </div>
+		  </div>
+		  
+
+		<!-- Profile Description -->
+		<div class="col-md-8 item" id="profileDesc">
+			<div class="testimony-wrap pb-5">
+				<div class="text">
+				<p class="name">Nama UMKM</p>
+				<P><%=user.umkm.namaUMKM%></P>
+				<p class="name">Nomor Telepon</p>
+				<span class="position" style="letter-spacing: 1px;"><%=user.noTelepon%></span>
+				<p class="name">Tentang UMKM</p>
+				<p class="mb-4">
+					<% if(!user.umkm.tentang) {%>
+						Belum ada Keterangan
+					<%} else {%>
+						<%=user.umkm.tentang%>
+					<%}%>
+				</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Profile Edit -->
+		<div class="col-md-8 item d-none" id="profileEdit">
+			<div class="testimony-wrap pb-5">
+				<div class="text">
+				<form action="/user/profile/umkm/update" class="form-group" method="POST" enctype="multipart/form-data">
+					<p class="name">Gambar Profil UMKM</p>
+					<input class="form-control" type="file" name="gambarUMKM" value="">
+					<p class="name">Nama UMKM</p>
+					<input class="form-control" type="text" name="umkm[namaUMKM]" value="<%=user.umkm.namaUMKM%>">
+					<p class="name">Nomor Telepon</p>
+					<input class="form-control" type="text" name="noTelepon" value="<%=user.noTelepon%>">
+					<p class="name">Tentang UMKM</p>
+					<textarea placeholder="Deskripsi" rows="5" class="form-control" type="text" name="umkm[tentang]"><% if(user.umkm.tentang) {%><%=user.umkm.tentang%><%}%></textarea>
+					<button class="btn btn-primary mt-3">Simpan Perubahan</button>
+				</form>
+				</div>
+			</div>
+		</div>
+
+        </div>
+      </div>
+    </section>
+
+	<!-- Start Footer -->
+	<%- include('../partials/footer') %>
+	<!-- End Footer -->
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+  <%- include('../partials/script') %>
+
+  	<script>
+		function myFunction() {
+			var profileDesc = document.getElementById("profileDesc");
+			var profileEdit = document.getElementById("profileEdit");
+			var ubahProfilButton = document.getElementById("ubahProfilButton");
+			var batalUbahButton = document.getElementById("batalUbahButton");
+			profileDesc.classList.toggle("d-none");
+			profileEdit.classList.toggle("d-block");
+
+			ubahProfilButton.classList.toggle("d-none");
+			batalUbahButton.classList.toggle("d-block");
+		}
+	</script>
+
+	<% if(successDone.length > 0) {%>
+		<script>
+			swal({
+				title : "Success",
+				icon: "success",
+				text : "<%=successDone%>",
+				button: "Okay",
+			});
+		</script>
+	<%}%>
+
+	<% if(errorFailed.length > 0) {%>
+		<script>
+			swal({
+				title : "Error",
+				icon: "error",
+				text : "<%=errorFailed%>",
+				button: "Okay",
+			});
+		</script>
+	<%}%>
+
+    
+  </body>
+</html>
