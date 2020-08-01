@@ -66,12 +66,16 @@
 						<div class="col-md-12 mt-2 text-center">
 							<a href="/dashboard/request/mitra" class="btn btn-primary py-3 px-5">Request Mitra</a>
 						</div>
-						<div class="col-md-12 mt-2 text-center">
-							<a href="/dashboard/produk" class="btn btn-primary py-3 px-5">Halaman Produk</a>
-						</div>
-						<div class="col-md-12 mt-2 text-center">
-							<a href="kegiatan-beta.html" class="btn btn-primary py-3 px-5">Halaman Kegiatan</a>
-						</div>
+						<% if(user.isMitra) {%>
+							<div class="col-md-12 mt-2 text-center">
+								<a href="/dashboard/produk" class="btn btn-primary py-3 px-5">Halaman Produk</a>
+							</div>
+						<%}%>
+						<% if(user.isAdmin) {%>
+							<div class="col-md-12 mt-2 text-center">
+								<a href="kegiatan-beta.html" class="btn btn-primary py-3 px-5">Halaman Kegiatan</a>
+							</div>
+						<%}%>
 						<div class="col-md-12 mt-5 mb-3 text-center">
 							<form action="/user/logout" method="POST">
 								<button type="submit" class="btn btn-danger py-3 px-5">Keluar</button>
