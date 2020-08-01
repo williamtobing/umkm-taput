@@ -84,16 +84,18 @@
           <% listProduk.forEach(produk => { %>
             <div class="col-md-4 ftco-animate">
               <div class="blog-entry">
-                <a href="detail-produk-beta.html" class="block-20" style="background-image: url('/dashboard/produk/gambar/<%=produk._id%>');">
+                <a href="/dashboard/produk/<%=produk._id%>" class="block-20" style="background-image: url('/dashboard/produk/gambar/<%=produk._id%>');">
                 </a>
                 <div class="text pt-3 pb-4">
                   <div class="meta">
                     <div><a href="#"><%=produk.tanggalDitambahkan%></a></div>
-                    <div><a href="#">Admin</a></div>
+                    <div>
+                      <a href="#"><%if(!user.isAdmin) {%>Mitra<%}%></a>
+                    </div>
                   </div>
                   <h3 class="heading"><a href="#"><%=produk.judul%></a></h3>
                   <p class="clearfix">
-                    <a href="#" class="float-left read">Read more</a>
+                    <a href="/dashboard/produk/<%=produk._id%>" class="float-left read">Read more</a>
                     <a href="#" class="float-right meta-chat"><span class="icon-chat"></span> 3</a>
                   </p>
                 </div>

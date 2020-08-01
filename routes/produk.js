@@ -77,4 +77,20 @@ router.post('/tambah', auth, upload.single('gambar'), async (req, res) => {
     res.redirect('/dashboard/produk/tambah');
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const produk = await Produk.findById(req.params.id).populate('owner').exec();
+        produk.formatted = produk.deskripsiProduk.split('\n');
+        res.render('dashboard/detail_produk_beta', {
+            title : "Detail Produk",
+            produk : produk
+        });
+    } catch(e) {
+        res.json({
+            message : e.message
+        });
+    }
+    
+});
+
 module.exports = router;

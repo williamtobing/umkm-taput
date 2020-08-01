@@ -15,10 +15,14 @@ const produkSchema = new mongoose.Schema({
         required : true,
         trim : true
     },
+    komentar : {
+        type : []
+    },
     owner : {
         type : mongoose.Schema.Types.ObjectId,
         required : true,
-        trim : true
+        trim : true,
+        ref : 'Users'
     },
 }, {
     timestamps : true
