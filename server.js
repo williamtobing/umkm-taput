@@ -39,6 +39,7 @@ app.use(passport.authenticate('remember-me'));
 
 app.use(function (req,res, next){
     res.locals.user = req.user;
+    res.locals.errorAuth = req.flash('errorAuth');
     res.locals.successDone = req.flash('success');
     res.locals.errorFailed = req.flash('error');
 
@@ -49,6 +50,7 @@ app.use(function (req,res, next){
 app.use('/', require('./routes/index'));
 app.use('/user', require('./routes/user'));
 app.use('/dashboard', require('./routes/dashboard'));
+app.use('/dashboard', require('./routes/requestMitra'));
 
 app.listen(port, function () {
     console.log(`Server started on ${port}`);

@@ -49,6 +49,12 @@ const userSchema = new mongoose.Schema({
     timestamps : true
 });
 
+userSchema.virtual('mitra_request', {
+    ref : 'requestMitra',
+    localField : '_id',
+    foreignField : 'owner'
+});
+
 userSchema.pre('save', async function(next){
     const user = this;
     if(user.isModified('password')){

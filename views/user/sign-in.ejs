@@ -184,6 +184,19 @@
 			});
 		</script>
 	<%}%>
+
+	<% if(errorAuth.length > 0) {%>
+		<script>
+			swal({
+				title : "Warning",
+				icon: "warning",
+				text : "<%=errorAuth%>",
+				button: "Okay",
+			});
+		</script>
+	<%}%>
+
+	
     
   </body>
 </html>
