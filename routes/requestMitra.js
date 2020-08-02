@@ -8,7 +8,7 @@ const {auth} = require('./../middleware/auth');
 const RequestMitra = require('./../models/requestMitra');
 
 
-router.get('/request/mitra', async (req, res) => {
+router.get('/request/mitra', auth, async (req, res) => {
     try {
         await req.user.populate({
             path : 'mitra_request'
