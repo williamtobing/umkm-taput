@@ -140,4 +140,15 @@ router.patch('/edit/:id', auth, upload.single('gambar'), async (req, res) => {
     res.redirect(`/dashboard/produk/edit/${produk._id}`)
 });
 
+router.delete('/delete/:id', auth, async(req, res) => {
+    try {
+        const produk = await Produk.findByIdAndDelete(req.params.id);
+        req.flash('success', 'Berhasil menghapus');
+        res.redirect('/dashboard/produk');
+    } catch(e) {
+        req.flash('error', 'Gagal menghapus produk ' + e.message);
+        res.redirect('/dashboard/produk');
+    }
+});
+
 module.exports = router;
