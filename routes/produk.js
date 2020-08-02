@@ -3,6 +3,8 @@ const router = new express.Router();
 const multer = require('multer');
 const moment = require('moment-timezone');
 
+const sharp = require('sharp');
+
 const Produk = require('../models/produk');
 
 const {auth} = require('../middleware/auth');
