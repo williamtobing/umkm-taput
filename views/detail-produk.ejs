@@ -52,7 +52,7 @@
             <div class="col-lg-12 ftco-animate">
                 <h2 class="mb-3 text-center"><%=produk.judul%></h2>
                 <p class="text-center">
-                    <img src="/produk/gambar/<%=produk._id%>" alt="" class="img-fluid">
+                    <img style="width: 100%; max-width: 450px; height: auto; max-height: 450px;" src="/produk/gambar/<%=produk._id%>" alt="" class="img-fluid">
                 </p>
                 <% produk.formatted.forEach(produk => { %>
                     <p class="text-justify"><%=produk%></p>
@@ -62,9 +62,9 @@
                 <div class="about-author d-flex p-4 bg-light">
                     <div class="bio mr-5">
                         <% if(!produk.owner.umkm.gambarUMKM) {%>
-                            <img src="/images/gambar_umkm.png" alt="Image placeholder" class="img-fluid mb-4">
+                            <img style="width: 100%; max-width: 200px; height: auto; max-height: 200px;" src="/images/gambar_umkm.png" alt="Image placeholder" class="img-fluid mb-4">
                         <%} else {%>
-                            <img src="/produk/gambar/mitra/<%=produk._id%>" alt="Image placeholder" class="img-fluid mb-4">
+                            <img style="width: 100%; max-width: 200px; height: auto; max-height: 200px;" src="/produk/gambar/mitra/<%=produk._id%>" alt="Image placeholder" class="img-fluid mb-4">
                         <%}%>
                     </div>
                     <div class="desc">
