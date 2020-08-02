@@ -8,7 +8,14 @@ const RequestMitra = require('../models/requestMitra');
 
 const {auth, authIsMitra, authIsAdmin} = require('./../middleware/auth');
 
-router.get('/', auth, (req, res) => {
+router.get('/', auth, async (req, res) => {
+    if(req.user.isAdmin) {
+        const requestMitra = await RequestMitra.find({status : "0"});
+        return res.render('dashboard/dashboard-beta', {
+            title : "Dashboard",
+            notifMenunggu : requestMitra.length 
+        });
+    }
     res.render('dashboard/dashboard-beta', {
         title : "Dashboard"
     });
