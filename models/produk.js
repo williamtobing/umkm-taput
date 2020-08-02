@@ -5,9 +5,9 @@ const komentarSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    owner : {
+    ownerKomentar : {
         type : mongoose.Schema.Types.ObjectId,
-        required : true,
+        // required : true,
         trim : true,
         ref : 'Users'
     }

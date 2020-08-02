@@ -2,6 +2,8 @@ const express = require('express');
 const router = new express.Router();
 const moment = require('moment-timezone');
 
+const { auth } = require('./../middleware/auth');
+
 const escapeRegex = require('./../function/search');
 
 const Produk = require('../models/produk');
@@ -32,11 +34,17 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const produk = await Produk.findById(req.params.id).populate('owner').exec();
+        const produkKomentar = await Produk.findById(req.params.id).populate('komentar.ownerKomentar').exec();
+        produkKomentar.komentar.forEach(prod => {
+            prod.tanggalDibuat = moment(prod.createdAt).tz('Asia/Jakarta').locale('id').format('LLLL');
+        });
         produk.formatted = produk.deskripsiProduk.split('\n');
-        console.log(produk.owner);
+        // console.log(produk.owner);
         res.render('detail-produk', {
             title : "Detail Produk",
-            produk : produk
+            produk : produk,
+            produkKomentar : produkKomentar,
+            commentLength : produk.komentar.length
         });
     } catch(e) {
         res.json({
@@ -68,6 +76,22 @@ router.get('/gambar/mitra/:id', async (req, res) => {
         res.send(produk.owner.umkm.gambarUMKM);
     } catch(e) {
         res.status(404).send(e);
+    }
+});
+
+// add komentar
+router.post('/comment/:id', auth, async (req, res) => {
+    try {
+        const produk = await Produk.findById(req.params.id);
+        produk.komentar.push({...req.body});
+
+        await produk.save();
+        req.flash('success', 'Komentar Ditambahkan');
+        res.redirect(`/produk/${produk._id}`);
+    } catch(e) {
+        res.json({
+            message : e.message
+        })
     }
 });
 

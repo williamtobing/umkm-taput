@@ -84,10 +84,16 @@ router.post('/tambah', auth, upload.single('gambar'), async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const produk = await Produk.findById(req.params.id).populate('owner').exec();
+        const produkKomentar = await Produk.findById(req.params.id).populate('komentar.ownerKomentar').exec();
+        produkKomentar.komentar.forEach(prod => {
+            prod.tanggalDibuat = moment(prod.createdAt).tz('Asia/Jakarta').locale('id').format('LLLL');
+        });
         produk.formatted = produk.deskripsiProduk.split('\n');
         res.render('dashboard/detail_produk_beta', {
             title : "Detail Produk",
-            produk : produk
+            produk : produk,
+            produkKomentar : produkKomentar,
+            commentLength : produk.komentar.length
         });
     } catch(e) {
         res.json({
@@ -161,5 +167,7 @@ router.delete('/delete/:id', auth, async(req, res) => {
         res.redirect('/dashboard/produk');
     }
 });
+
+
 
 module.exports = router;
