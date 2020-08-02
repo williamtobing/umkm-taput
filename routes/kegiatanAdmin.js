@@ -3,6 +3,7 @@ const multer = require('multer');
 const sharp = require('sharp');
 const moment = require('moment-timezone');
 const router = express.Router();
+const escapeRegex = require('./../function/search');
 
 const { auth } = require('./../middleware/auth');
 
@@ -10,10 +11,19 @@ const Kegiatan = require('./../models/kegiatan');
 
 router.get('/kegiatan', auth, async (req, res) => {
     try {
-        const kegiatan = await Kegiatan.find({}).sort({createdAt : 'desc'});
-        kegiatan.forEach(keg => {
-            keg.tanggalDiupload = moment(keg.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
-        });
+        let kegiatan;
+        if(!req.query.search) {
+            kegiatan = await Kegiatan.find({}).sort({createdAt : 'desc'});
+            kegiatan.forEach(keg => {
+                keg.tanggalDiupload = moment(keg.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
+            });
+        } else {
+            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+            kegiatan = await Kegiatan.find({judul : regex});
+            kegiatan.forEach(keg => {
+                keg.tanggalDiupload = moment(keg.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
+            });
+        }
         res.render('admin/kegiatan-beta', {
             title : "Admin Kegiatan",
             listData : kegiatan
