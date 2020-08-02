@@ -49,7 +49,7 @@
 <section class="mt-5">
     <div class="container">
         <div class="text-right">
-            <a class="btn btn-black" href="tambah-produk-beta.html">Edit</a>
+            <a class="btn btn-black" href="/dashboard/produk/edit/<%=produk._id%>">Edit</a>
             <button data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger" href="">Hapus</button>
         </div>
 
@@ -219,6 +219,28 @@
 
 
 <%- include('../partials/script') %>
+
+<% if(successDone.length > 0) {%>
+    <script>
+        swal({
+            icon : "success",
+            title : "Success",
+            text : "<%=successDone%>",
+            button : "Okay"
+        })
+    </script>
+<%}%>
+
+<% if(errorFailed.length > 0) {%>
+    <script>
+        swal({
+            icon : "error",
+            title : "Error",
+            text : "<%=errorFailed%>",
+            button : "Okay"
+        })
+    </script>
+<%}%>
 
 </body>
 </html>

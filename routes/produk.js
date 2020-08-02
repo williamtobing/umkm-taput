@@ -86,4 +86,44 @@ router.get('/:id', async (req, res) => {
     
 });
 
+router.get('/edit/:id', auth, async (req, res) => {
+    try {
+        const produk = await Produk.findById(req.params.id);
+        res.render('dashboard/edit_produk_beta', {
+            title : "Edit Produk",
+            data : produk
+        });
+    } catch(e) {
+        res.json({
+            message : e.message
+        });
+    }
+});
+
+
+router.patch('/edit/:id', auth, upload.single('gambar'), async (req, res) => {
+    let produk;
+    try {
+        if(req.file !== undefined) {
+            produk = await Produk.findByIdAndUpdate(req.params.id, { 
+                ...req.body,
+                gambar : await sharp(req.file.buffer).webp().toBuffer()
+            },{
+                new : true
+            });
+        } else {
+            produk = await Produk.findByIdAndUpdate(req.params.id, {...req.body}, {new : true});
+        }
+        req.flash('success', 'Produk berhasil di update');
+        res.redirect(`/dashboard/produk/${produk._id}`);
+    } catch(e) {
+        req.flash('error', 'Gagal mengupdate file');
+        res.redirect(`/dashboard/produk/edit/${produk._id}`)
+    }
+}, async (error, req, res, next) => {
+    const produk = await Produk.findById(req.params.id);
+    req.flash('error', 'Gagal mengupdate file : ' + error.message);
+    res.redirect(`/dashboard/produk/edit/${produk._id}`)
+});
+
 module.exports = router;
