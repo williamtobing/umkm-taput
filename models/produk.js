@@ -1,5 +1,20 @@
 const mongoose = require('mongoose');
 
+const komentarSchema = new mongoose.Schema({
+    isiKomentar : {
+        type : String,
+        required : true
+    },
+    owner : {
+        type : mongoose.Schema.Types.ObjectId,
+        required : true,
+        trim : true,
+        ref : 'Users'
+    }
+}, {
+    timestamps : true
+});
+
 const produkSchema = new mongoose.Schema({
     judul : {
         type : String,
@@ -16,7 +31,7 @@ const produkSchema = new mongoose.Schema({
         trim : true
     },
     komentar : {
-        type : []
+        type : [komentarSchema]
     },
     owner : {
         type : mongoose.Schema.Types.ObjectId,
