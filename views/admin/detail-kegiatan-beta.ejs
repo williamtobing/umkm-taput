@@ -49,8 +49,10 @@
 <section class="mt-5 mb-5">
     <div class="container">
         <div class="text-right">
-            <a class="btn btn-black" href="tambah-kegiatan-beta.html">Edit</a>
-            <a class="btn btn-danger" href="">Hapus</a>
+            <a class="btn btn-black" href="/admin/kegiatan/detail/edit/<%=data._id%>">Edit</a>
+            <form style="display: inline-block;" action="/admin/kegiatan/detail/delete/<%=data._id%>?_method=DELETE" method="POST" id="hapusKegiatanForm">
+                <button id="deleteBtn" type="submit" class="btn btn-danger" href="">Hapus</button>
+            </form>
         </div>
         <div class="row">
             <div class="col-lg-12 ftco-animate">
@@ -75,5 +77,49 @@
 
 
 <%- include('../partials/script') %>
+
+<% if(successDone.length > 0) {%>
+    <script>
+        swal({
+            title : "Success",
+            icon : "success",
+            text : "<%=successDone%>",
+            button : "Okay"
+        });
+    </script>
+<%}%>
+<% if(errorFailed.length > 0) {%>
+    <script>
+        swal({
+            title : "Error",
+            icon : "error",
+            text : "<%=errorFailed%>",
+            button : "Okay"
+        });
+    </script>
+<%}%>
+
+<script>
+    const buttonDelete =  document.querySelector('#deleteBtn');
+        buttonDelete.addEventListener('click', (e) => {
+            e.preventDefault();
+            swal({
+                title: "Yakin menghapus produk?",
+                text: "Data akan dihapus secara permanen dan tidak dapat dipulihkan",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    var form = document.querySelector("#hapusKegiatanForm");
+                    form.submit();
+                } else {
+                    return false;
+                }
+            });
+        });
+        console.log(buttonDelete);
+</script>
 </body>
 </html>

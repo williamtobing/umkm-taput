@@ -47,6 +47,20 @@ router.get('/kegiatan/tambah', auth, (req, res) => {
     });
 });
 
+router.get('/kegiatan/detail/edit/:id', auth, async (req, res) => {
+    try {
+        const kegiatan = await Kegiatan.findById(req.params.id);
+        res.render('admin/edit-kegiatan-beta', {
+            title : "Admin Tambah Kegiatan",
+            data : kegiatan
+        });
+    } catch(e) {
+        res.json({
+            message : e.message
+        })
+    }
+});
+
 const upload = multer({
     limits : 1024*1024*6,
     fileFilter(req, file, cb) {
@@ -90,5 +104,44 @@ router.post('/kegiatan/tambah', auth, upload.single('gambar'), async (req, res) 
         })
     }
 });
+
+// update kegiatan
+router.patch('/kegiatan/detail/edit/:id', auth, upload.single('gambar'), async (req, res) => {
+    let kegiatan;
+    try {
+        if(req.file !== undefined) {
+            kegiatan = await Kegiatan.findByIdAndUpdate(req.params.id, { 
+                ...req.body,
+                gambar : await sharp(req.file.buffer).webp().toBuffer()
+            },{
+                new : true
+            });
+        } else {
+            kegiatan = await Kegiatan.findByIdAndUpdate(req.params.id, {...req.body}, {new : true});
+        }
+        req.flash('success', 'Produk berhasil di update');
+        res.redirect(`/admin/kegiatan/detail/${kegiatan._id}`);
+    } catch(e) {
+        req.flash('error', 'Gagal mengupdate file');
+        res.redirect(`/admin/kegiatan/detail/edit/${kegiatan._id}`)
+    }
+}, async (error, req, res, next) => {
+    const kegiatan = await Kegiatan.findById(req.params.id);
+    req.flash('error', 'Gagal mengupdate file : ' + error.message);
+    res.redirect(`/admin/kegiatan/detail/edit/${kegiatan._id}`)
+});
+
+router.delete('/kegiatan/detail/delete/:id', auth, async(req, res) => {
+    try {
+        const kegiatan = await Kegiatan.findByIdAndDelete(req.params.id);
+        req.flash('success', 'Berhasil menghapus');
+        res.redirect('/admin/kegiatan');
+    } catch(e) {
+        req.flash('error', 'Gagal menghapus produk ' + e.message);
+        res.redirect('/admin/kegiatan');
+    }
+});
+
+
 
 module.exports = router;
