@@ -49,6 +49,7 @@ app.use(function (req,res, next){
 
 // routes
 app.use('/', require('./routes/index'));
+app.use('/', require('./routes/kegiatanAll'));
 app.use('/produk', require('./routes/produkAll'));
 app.use('/user', require('./routes/user'));
 app.use('/dashboard', require('./routes/dashboard'));
