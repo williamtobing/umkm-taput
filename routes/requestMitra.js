@@ -3,7 +3,7 @@ const multer =  require('multer');
 const sharp = require('sharp');
 const router = new express.Router();
 
-const {auth} = require('./../middleware/auth');
+const {auth, authIsAdmin} = require('./../middleware/auth');
 
 const RequestMitra = require('./../models/requestMitra');
 
@@ -43,19 +43,6 @@ router.get('/request/mitra/download/:id', async (req, res) =>{
     }
 });
 
-router.get('/getarticle-image/:id', async (req, res) => {
-    try {
-        const article = await Article.findById(req.params.id);
-        if(!article || !article.gambar) {
-            throw new Error();
-        }
-        res.set('Content-Type' , 'image/webp');
-        res.send(article.gambar);
-    } catch (e) {
-        res.status(404).send(e);
-    }
-});
-
 const upload = multer({
     limits : 1024*1024*6,
     fileFilter(req, file, cb) {
@@ -88,7 +75,7 @@ router.post('/request/mitra', auth, upload.single('fotoKtp'), async (req, res) =
 });
 
 // Update status
-router.patch('/request/mitra/update/:id', auth, async (req, res) => {
+router.patch('/request/mitra/update/:id', auth, authIsAdmin, async (req, res) => {
     try {
         const request = await RequestMitra.findByIdAndUpdate(req.params.id, {...req.body}, { new : true}).populate('owner').exec();
         if(req.body.status === "1") {

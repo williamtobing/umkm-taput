@@ -5,11 +5,11 @@ const moment = require('moment-timezone');
 const router = express.Router();
 const escapeRegex = require('./../function/search');
 
-const { auth } = require('./../middleware/auth');
+const { auth, authIsAdmin } = require('./../middleware/auth');
 
 const Kegiatan = require('./../models/kegiatan');
 
-router.get('/kegiatan', auth, async (req, res) => {
+router.get('/kegiatan', auth, authIsAdmin,  async (req, res) => {
     try {
         let kegiatan;
         if(!req.query.search) {
@@ -35,7 +35,7 @@ router.get('/kegiatan', auth, async (req, res) => {
     }
 });
 
-router.get('/kegiatan/detail/:id', auth, async(req, res) => {
+router.get('/kegiatan/detail/:id', auth, authIsAdmin, async(req, res) => {
     try {
         const kegiatan = await Kegiatan.findById(req.params.id);
         kegiatan.tanggalDiupload = moment(kegiatan.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
@@ -51,13 +51,13 @@ router.get('/kegiatan/detail/:id', auth, async(req, res) => {
     }
 });
 
-router.get('/kegiatan/tambah', auth, (req, res) => {
+router.get('/kegiatan/tambah', auth, authIsAdmin, (req, res) => {
     res.render('admin/tambah-kegiatan-beta', {
         title : "Admin Tambah Kegiatan"
     });
 });
 
-router.get('/kegiatan/detail/edit/:id', auth, async (req, res) => {
+router.get('/kegiatan/detail/edit/:id', auth, authIsAdmin, async (req, res) => {
     try {
         const kegiatan = await Kegiatan.findById(req.params.id);
         res.render('admin/edit-kegiatan-beta', {
@@ -82,7 +82,7 @@ const upload = multer({
 });
 
 // Download Image
-router.get('/kegiatan/gambar/:id', async (req, res) => {
+router.get('/kegiatan/gambar/:id', auth, authIsAdmin, async (req, res) => {
     try {
         const kegiatan = await Kegiatan.findById(req.params.id);
         if(!kegiatan || !kegiatan.gambar) {
@@ -97,7 +97,7 @@ router.get('/kegiatan/gambar/:id', async (req, res) => {
     }
 });
 
-router.post('/kegiatan/tambah', auth, upload.single('gambar'), async (req, res) => {
+router.post('/kegiatan/tambah', auth, authIsAdmin, upload.single('gambar'), async (req, res) => {
     const sharpBuffer = await sharp(req.file.buffer).webp().toBuffer();
     const kegiatan = new Kegiatan({
         ...req.body,
@@ -116,7 +116,7 @@ router.post('/kegiatan/tambah', auth, upload.single('gambar'), async (req, res) 
 });
 
 // update kegiatan
-router.patch('/kegiatan/detail/edit/:id', auth, upload.single('gambar'), async (req, res) => {
+router.patch('/kegiatan/detail/edit/:id', auth, authIsAdmin, upload.single('gambar'), async (req, res) => {
     let kegiatan;
     try {
         if(req.file !== undefined) {
@@ -141,7 +141,7 @@ router.patch('/kegiatan/detail/edit/:id', auth, upload.single('gambar'), async (
     res.redirect(`/admin/kegiatan/detail/edit/${kegiatan._id}`)
 });
 
-router.delete('/kegiatan/detail/delete/:id', auth, async(req, res) => {
+router.delete('/kegiatan/detail/delete/:id', auth, authIsAdmin,  async(req, res) => {
     try {
         const kegiatan = await Kegiatan.findByIdAndDelete(req.params.id);
         req.flash('success', 'Berhasil menghapus');

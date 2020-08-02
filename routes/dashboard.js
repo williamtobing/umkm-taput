@@ -6,7 +6,7 @@ const router = new express.Router();
 // Models
 const RequestMitra = require('../models/requestMitra');
 
-const {auth} = require('./../middleware/auth');
+const {auth, authIsMitra, authIsAdmin} = require('./../middleware/auth');
 
 router.get('/', auth, (req, res) => {
     res.render('dashboard/dashboard-beta', {
@@ -14,13 +14,13 @@ router.get('/', auth, (req, res) => {
     });
 });
 
-router.get('/umkm', auth, (req, res) => {
+router.get('/umkm', auth, authIsMitra, (req, res) => {
     res.render('user/profil_umkm', {
         title : "Profil UMKM"
     });
 });
 
-router.get('/mitra/kelola', auth, async (req, res) => {
+router.get('/mitra/kelola', auth, authIsAdmin, async (req, res) => {
     try {
         const requestMitra = await RequestMitra.find({}).populate({ path: 'owner' }).exec();
         requestMitra.forEach(rm => {

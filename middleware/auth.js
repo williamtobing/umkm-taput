@@ -14,5 +14,21 @@ const notAuth = (req, res, next) => {
     next();   
 }
 
+const authIsMitra = (req, res, next) => {
+    if(req.user.isMitra === true) {
+        return next();
+    }
+    req.flash('error', 'Not Authorized');
+    res.redirect('/user/profil');
+};
 
-module.exports = { auth, notAuth };
+const authIsAdmin = (req, res, next) => {
+    if(req.user.isAdmin === true) {
+        return next();
+    }
+    req.flash('error', 'Not Authorized');
+    res.redirect('/user/profil');
+};
+
+
+module.exports = { auth, notAuth, authIsMitra, authIsAdmin };

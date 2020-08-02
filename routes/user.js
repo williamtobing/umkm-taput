@@ -5,7 +5,7 @@ const multer = require('multer');
 const uuid = require('uuid');
 const sharp = require('sharp');
 
-const { auth } = require('./../middleware/auth');
+const { auth, authIsMitra } = require('./../middleware/auth');
 
 const User = require('./../models/users');
 
@@ -115,7 +115,7 @@ router.get('/profile/umkm/gambar/:id', async (req, res) => {
 });
 
 
-router.post('/profile/update', upload.single('gambar'), async (req, res) => {
+router.post('/profile/update', auth, upload.single('gambar'), async (req, res) => {
     try {
         if(req.file !== undefined) {
             const sharpBuffer = await sharp(req.file.buffer).webp().toBuffer();
@@ -141,7 +141,7 @@ router.post('/profile/update', upload.single('gambar'), async (req, res) => {
     res.redirect('/user/profil');
 });
 
-router.post('/profile/umkm/update', upload.single('gambarUMKM'), async (req, res) => {
+router.post('/profile/umkm/update', auth, authIsMitra, upload.single('gambarUMKM'), async (req, res) => {
     try {
         if(req.file !== undefined) {
             const sharpBuffer = await sharp(req.file.buffer).webp().toBuffer();

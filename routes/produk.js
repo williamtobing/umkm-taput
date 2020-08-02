@@ -9,9 +9,9 @@ const sharp = require('sharp');
 
 const Produk = require('../models/produk');
 
-const {auth} = require('../middleware/auth');
+const {auth, authIsMitra} = require('../middleware/auth');
 
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, authIsMitra, async (req, res) => {
     try {
         if(!req.query.search) {
             await req.user.populate({
@@ -39,7 +39,7 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-router.get('/tambah', auth, (req, res) => {
+router.get('/tambah', auth, authIsMitra, (req, res) => {
     res.render('dashboard/tambah_produk_beta', {
         title : "Tambah Produk"
     });
@@ -60,7 +60,7 @@ const upload = multer({
 
 
 
-router.post('/tambah', auth, upload.single('gambar'), async (req, res) => {
+router.post('/tambah', auth, authIsMitra, upload.single('gambar'), async (req, res) => {
     const sharpBuffer = await sharp(req.file.buffer).webp().toBuffer();
     const produk = new Produk({
         ...req.body,
@@ -81,7 +81,7 @@ router.post('/tambah', auth, upload.single('gambar'), async (req, res) => {
     res.redirect('/dashboard/produk/tambah');
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', authIsMitra, async (req, res) => {
     try {
         const produk = await Produk.findById(req.params.id).populate('owner').exec();
         const produkKomentar = await Produk.findById(req.params.id).populate('komentar.ownerKomentar').exec();
@@ -103,7 +103,7 @@ router.get('/:id', async (req, res) => {
     
 });
 
-router.get('/edit/:id', auth, async (req, res) => {
+router.get('/edit/:id', auth, authIsMitra, async (req, res) => {
     try {
         const produk = await Produk.findById(req.params.id);
         res.render('dashboard/edit_produk_beta', {
@@ -117,7 +117,7 @@ router.get('/edit/:id', auth, async (req, res) => {
     }
 });
 
-router.get('/gambar/:id', async (req, res) => {
+router.get('/gambar/:id', auth, authIsMitra, async (req, res) => {
     try {
         const produk = await Produk.findById(req.params.id).populate('owner').exec();
         if(!produk || !produk.owner.umkm.gambarUMKM) {
@@ -132,7 +132,7 @@ router.get('/gambar/:id', async (req, res) => {
     }
 });
 
-router.patch('/edit/:id', auth, upload.single('gambar'), async (req, res) => {
+router.patch('/edit/:id', auth, authIsMitra, upload.single('gambar'), async (req, res) => {
     let produk;
     try {
         if(req.file !== undefined) {
@@ -157,7 +157,7 @@ router.patch('/edit/:id', auth, upload.single('gambar'), async (req, res) => {
     res.redirect(`/dashboard/produk/edit/${produk._id}`)
 });
 
-router.delete('/delete/:id', auth, async(req, res) => {
+router.delete('/delete/:id', auth, authIsMitra, async(req, res) => {
     try {
         const produk = await Produk.findByIdAndDelete(req.params.id);
         req.flash('success', 'Berhasil menghapus');
