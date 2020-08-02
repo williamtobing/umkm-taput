@@ -67,10 +67,11 @@ const upload = multer({
 
 router.post('/request/mitra', auth, upload.single('fotoKtp'), async (req, res) => {
     try {
+        const sharpBuffer = await sharp(req.file.buffer).webp().toBuffer();
         const requestMitra = new RequestMitra({
             ...req.body,
             owner : req.user._id,
-            fotoKtp : req.file.buffer,
+            fotoKtp : sharpBuffer,
         });
         await requestMitra.save();
         req.flash('success', 'Request berhasil dibuat');

@@ -48,9 +48,10 @@ const upload = multer({
 
 
 router.post('/tambah', auth, upload.single('gambar'), async (req, res) => {
+    const sharpBuffer = await sharp(req.file.buffer).webp().toBuffer();
     const produk = new Produk({
         ...req.body,
-        gambar : req.file.buffer,
+        gambar : sharpBuffer,
         owner : req.user._id
     });
     try {

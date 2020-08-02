@@ -3,6 +3,7 @@ const passport = require('passport');
 const router = new express.Router();
 const multer = require('multer');
 const uuid = require('uuid');
+const sharp = require('sharp');
 
 const { auth } = require('./../middleware/auth');
 
@@ -117,7 +118,8 @@ router.get('/profile/umkm/gambar/:id', async (req, res) => {
 router.post('/profile/update', upload.single('gambar'), async (req, res) => {
     try {
         if(req.file !== undefined) {
-            req.user.gambar = req.file.buffer;
+            const sharpBuffer = await sharp(req.file.buffer).webp().toBuffer();
+            req.user.gambar = sharpBuffer;
             req.user.namaLengkap = req.body.namaLengkap;
             req.user.noTelepon = req.body.noTelepon;
             req.user.deskripsi = req.body.deskripsi;
@@ -142,7 +144,8 @@ router.post('/profile/update', upload.single('gambar'), async (req, res) => {
 router.post('/profile/umkm/update', upload.single('gambarUMKM'), async (req, res) => {
     try {
         if(req.file !== undefined) {
-            req.user.umkm.gambarUMKM = req.file.buffer;
+            const sharpBuffer = await sharp(req.file.buffer).webp().toBuffer();
+            req.user.umkm.gambarUMKM = sharpBuffer;
             req.user.umkm.namaUMKM = req.body.umkm.namaUMKM;
             req.user.noTelepon = req.body.noTelepon;
             req.user.umkm.tentang = req.body.umkm.tentang;
