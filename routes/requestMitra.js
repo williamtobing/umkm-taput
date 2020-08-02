@@ -33,7 +33,7 @@ router.get('/request/mitra/download/:id', async (req, res) =>{
         if(!requestMitra || !requestMitra.fotoKtp){
             throw new Error();
         }
-        res.set('Content-Type', 'image/jpg');
+        res.set('Content-Type', 'image/webp');
         res.send(requestMitra.fotoKtp);
     } catch(e) {
         res.status(400).json({

@@ -94,7 +94,7 @@ router.get('/profile/gambar/:id', async (req, res) => {
         if(!user || !user.gambar) {
             throw new Error();
         }
-        res.set('Content-Type' , 'image/jpg');
+        res.set('Content-Type' , 'image/webp');
         res.send(user.gambar);
     } catch(e) {
         res.status(404).send(e);
@@ -107,7 +107,7 @@ router.get('/profile/umkm/gambar/:id', async (req, res) => {
         if(!user || !user.umkm.gambarUMKM) {
             throw new Error();
         }
-        res.set('Content-Type' , 'image/jpg');
+        res.set('Content-Type' , 'image/webp');
         res.send(user.umkm.gambarUMKM);
     } catch(e) {
         res.status(404).send(e);

@@ -44,7 +44,7 @@ router.get('/:id', async (req, res) => {
 router.get('/gambar/:id', async (req, res) => {
     try {
         const produk = await Produk.findById(req.params.id);
-        res.set('Content-Type', 'image/jpg');
+        res.set('Content-Type', 'image/webp');
         res.send(produk.gambar);
     } catch(e) {
         res.json({
@@ -59,7 +59,7 @@ router.get('/gambar/mitra/:id', async (req, res) => {
         if(!produk || !produk.owner.umkm.gambarUMKM) {
             throw new Error();
         }
-        res.set('Content-Type' , 'image/jpg');
+        res.set('Content-Type' , 'image/webp');
         res.send(produk.owner.umkm.gambarUMKM);
     } catch(e) {
         res.status(404).send(e);
