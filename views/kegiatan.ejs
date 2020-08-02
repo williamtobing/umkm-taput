@@ -51,10 +51,10 @@
 			<div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="#" class="search-form mb-5">
+                        <form action="/kegiatan" class="search-form mb-5" method="GET" id="searchForm">
                             <div class="form-group">
-                                <span class="icon icon-search"></span>
-                                <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+                                <span style="cursor: pointer;" class="icon icon-search" onclick="submitFunc()"></span>
+                                <input type="text" name="search" class="form-control" placeholder="Type a keyword and hit enter">
                             </div>
                         </form>
                     </div>
@@ -191,6 +191,13 @@
 
 
   <%- include('./partials/script') %>
+
+  <script>
+    function submitFunc() {
+      var form = document.getElementById("searchForm");
+      form.submit();
+    }
+  </script>
     
   </body>
 </html>

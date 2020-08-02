@@ -1,15 +1,25 @@
 const express = require('express');
 const moment = require('moment-timezone');
 const router = new express.Router();
+const escapeRegex = require('../function/search');
 
 const Kegiatan = require('./../models/kegiatan');
 
 router.get('/kegiatan', async (req, res) => {
     try {
-        const kegiatan = await Kegiatan.find({}).sort({createdAt : 'desc'});
-        kegiatan.forEach(keg => {
-            keg.tanggalDitambahkan = moment(keg.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
-        });
+        let kegiatan;
+        if(!req.query.search) {
+            kegiatan = await Kegiatan.find({}).sort({createdAt : 'desc'});
+            kegiatan.forEach(keg => {
+                keg.tanggalDitambahkan = moment(keg.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
+            });
+        } else {
+            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+            kegiatan = await Kegiatan.find({judul : regex});
+            kegiatan.forEach(keg => {
+                keg.tanggalDitambahkan = moment(keg.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
+            });
+        }
         res.render('kegiatan', {
             title : "Kegiatan",
             listData : kegiatan
