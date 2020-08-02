@@ -55,10 +55,10 @@
 			<div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="#" class="search-form mb-3">
+                        <form action="/dashboard/produk" class="search-form mb-3" id="searchForm">
                             <div class="form-group">
-                                <span class="icon icon-search"></span>
-                                <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+                                <span style="cursor: pointer;" class="icon icon-search" onclick="document.getElementById('searchForm').submit();" ></span>
+                                <input type="text" name="search" class="form-control" placeholder="Type a keyword and hit enter">
                             </div>
 <!--                            <div class="row">-->
 <!--                                <div class="col-md-4 border">-->

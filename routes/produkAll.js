@@ -2,6 +2,8 @@ const express = require('express');
 const router = new express.Router();
 const moment = require('moment-timezone');
 
+const escapeRegex = require('./../function/search');
+
 const Produk = require('../models/produk');
 
 router.get('/', async (req, res) => {
@@ -12,6 +14,9 @@ router.get('/', async (req, res) => {
             produk.forEach(prod => {
                 prod.tanggalDitambahkan = moment(prod.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
             });
+        } else {
+            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+            produk = await Produk.find({ judul : regex}).populate('owner').exec();
         }
         res.render('produk', {
             title : "Produk",

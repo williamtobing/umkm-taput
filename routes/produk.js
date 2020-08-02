@@ -3,6 +3,8 @@ const router = new express.Router();
 const multer = require('multer');
 const moment = require('moment-timezone');
 
+const escapeRegex = require('./../function/search');
+
 const sharp = require('sharp');
 
 const Produk = require('../models/produk');
@@ -11,16 +13,25 @@ const {auth} = require('../middleware/auth');
 
 router.get('/', auth, async (req, res) => {
     try {
-        await req.user.populate({
-            path : 'produk_me'
-        }).execPopulate();
-        req.user.produk_me.forEach((produk) => {
-            produk.tanggalDitambahkan = moment(produk.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
-        });
-        res.render('dashboard/produk_beta', {
-            title : "Produk",
-            listProduk : req.user.produk_me
-        });
+        if(!req.query.search) {
+            await req.user.populate({
+                path : 'produk_me'
+            }).execPopulate();
+            req.user.produk_me.forEach((produk) => {
+                produk.tanggalDitambahkan = moment(produk.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
+            });
+            res.render('dashboard/produk_beta', {
+                title : "Produk",
+                listProduk : req.user.produk_me
+            });
+        } else {
+            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+            await req.user.populate({ path : 'produk_me', match : {judul : regex} }).execPopulate();
+            res.render('dashboard/produk_beta', {
+                title : "Produk",
+                listProduk : req.user.produk_me
+            });
+        }
     } catch(e) {
         res.json({
             message : e.message
