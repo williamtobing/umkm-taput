@@ -77,7 +77,7 @@
             <div class="col-lg-12 ftco-animate">
                 <h2 class="mb-3 text-center"><%= produk.judul %></h2>
                 <p class="text-center">
-                    <img width="500" height="500" src="/produk/gambar/<%= produk._id %>" alt="" class="img-fluid">
+                    <img style="width: 100%; max-width: 450px; height: auto; max-height: 450px;" src="/produk/gambar/<%= produk._id %>" alt="" class="img-fluid">
                 </p>
                 
                 <% produk.formatted.forEach(pf => { %>
@@ -86,7 +86,7 @@
 
                 <div class="about-author d-flex p-4 bg-light">
                     <div class="bio mr-5">
-                        <img width="200" height="200" src="/user/profile/gambar/<%= produk.owner._id %>" alt="Igambar owner" class="img-fluid mb-4">
+                        <img style="width: 100%; max-width: 200px; height: auto; max-height: 200px;" src="/user/profile/gambar/<%= produk.owner._id %>" alt="Igambar owner" class="img-fluid mb-4">
                     </div>
                     <div class="desc">
                         <h3><%=produk.owner.namaLengkap%></h3>
@@ -96,7 +96,7 @@
 
 
                 <div class="pt-5 mt-5">
-                    <h3 class="mb-5 h4 font-weight-bold p-4 bg-light">07 Feedbacks</h3>
+                    <h3 class="mb-5 h4 font-weight-bold p-4 bg-light">Komentar</h3>
                     <ul class="comment-list">
                         <li class="comment">
                             <div class="vcard bio">
@@ -106,74 +106,7 @@
                                 <h3>John Doe</h3>
                                 <div class="meta mb-2">June 26, 2019 at 2:21pm</div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                <p><a href="#" class="reply">Reply</a></p>
-                            </div>
-                        </li>
-
-                        <li class="comment">
-                            <div class="vcard bio">
-                                <img src="/images/person_3.webp" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                                <h3>John Doe</h3>
-                                <div class="meta mb-2">June 26, 2019 at 2:21pm</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                <p><a href="#" class="reply">Reply</a></p>
-                            </div>
-
-                            <ul class="children">
-                                <li class="comment">
-                                    <div class="vcard bio">
-                                        <img src="/images/person_3.webp" alt="Image placeholder">
-                                    </div>
-                                    <div class="comment-body">
-                                        <h3>John Doe</h3>
-                                        <div class="meta mb-2">June 26, 2019 at 2:21pm</div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                        <p><a href="#" class="reply">Reply</a></p>
-                                    </div>
-
-
-                                    <ul class="children">
-                                        <li class="comment">
-                                            <div class="vcard bio">
-                                                <img src="/images/person_3.webp" alt="Image placeholder">
-                                            </div>
-                                            <div class="comment-body">
-                                                <h3>John Doe</h3>
-                                                <div class="meta mb-2">June 26, 2019 at 2:21pm</div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                <p><a href="#" class="reply">Reply</a></p>
-                                            </div>
-
-                                            <ul class="children">
-                                                <li class="comment">
-                                                    <div class="vcard bio">
-                                                        <img src="/images/person_3.webp" alt="Image placeholder">
-                                                    </div>
-                                                    <div class="comment-body">
-                                                        <h3>John Doe</h3>
-                                                        <div class="meta mb-2">June 26, 2019 at 2:21pm</div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                        <p><a href="#" class="reply">Reply</a></p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="comment">
-                            <div class="vcard bio">
-                                <img src="/images/person_3.webp" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                                <h3>John Doe</h3>
-                                <div class="meta mb-2">June 26, 2019 at 2:21pm</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                <p><a href="#" class="reply">Reply</a></p>
+                                <p><a href="#" class="reply">Hapus</a></p>
                             </div>
                         </li>
                     </ul>
@@ -182,19 +115,6 @@
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5 h4 font-weight-bold p-4 bg-light">Leave a comment</h3>
                         <form action="#" class="p-4 p-md-5 bg-light">
-                            <div class="form-group">
-                                <label for="name">Name *</label>
-                                <input type="text" class="form-control" id="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="website">Website</label>
-                                <input type="url" class="form-control" id="website">
-                            </div>
-
                             <div class="form-group">
                                 <label for="message">Message</label>
                                 <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
