@@ -90,7 +90,11 @@ router.patch('/request/mitra/update/:id', auth, async (req, res) => {
     try {
         const request = await RequestMitra.findByIdAndUpdate(req.params.id, {...req.body}, { new : true}).populate('owner').exec();
         if(req.body.status === "1") {
+            console.log(request);
             request.owner.isMitra = true;
+            request.owner.umkm.namaUMKM = request.namaUMKM;
+            request.owner.umkm.nik = request.nik;
+            request.owner.umkm.tentang = request.tentang;
             await request.owner.save();
         } else if(req.body.status === "9") {
             request.owner.isMitra = false;

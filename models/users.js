@@ -51,7 +51,24 @@ const userSchema = new mongoose.Schema({
     },
     gambar : {
         type : Buffer
-    }
+    },
+    umkm : {
+        gambarUMKM : {
+            type : Buffer
+        },
+        namaUMKM : {
+            type : String,
+            trim : true
+        },
+        nik : {
+            type : String,
+            trim : true
+        },
+        tentang : {
+            type : String,
+            trim : true
+        }
+    },
 }, {
     timestamps : true
 });

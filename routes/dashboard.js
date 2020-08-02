@@ -14,6 +14,12 @@ router.get('/', auth, (req, res) => {
     });
 });
 
+router.get('/umkm', auth, (req, res) => {
+    res.render('user/profil_umkm', {
+        title : "Profil UMKM"
+    });
+});
+
 router.get('/mitra/kelola', auth, async (req, res) => {
     try {
         const requestMitra = await RequestMitra.find({}).populate({ path: 'owner' }).exec();

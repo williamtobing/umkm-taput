@@ -45,17 +45,7 @@ const upload = multer({
     }
 });
 
-router.get('/gambar/:id', async (req, res) => {
-    try {
-        const produk = await Produk.findById(req.params.id);
-        res.set('Content-Type', 'image/jpg');
-        res.send(produk.gambar);
-    } catch(e) {
-        res.json({
-            message : e.message
-        });
-    }
-});
+
 
 router.post('/tambah', auth, upload.single('gambar'), async (req, res) => {
     const produk = new Produk({

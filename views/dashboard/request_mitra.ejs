@@ -92,19 +92,25 @@
                             <div class="col-lg-12 form ftco-animate my-5">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="">NIK</label>
+                                        <label class="font-weight-bold" for="">Nama UMKM</label>
+                                        <br><%= req.namaUMKM %>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="" class="font-weight-bold">NIK</label>
                                         <br><%= req.nik %>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="">Foto KTP</label>
+                                        <label for="" class="font-weight-bold">Foto KTP</label>
                                         <br><a href="/dashboard/request/mitra/download/<%=req._id%>">Ktp_<%=user.namaLengkap%></a>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="">Tentang Mitra</label>
+                                        <label for="" class="font-weight-bold">Tentang Mitra</label>
                                         <br>
                                         <% req.formattedTentang.forEach(tentang => {%>
                                             <span style="display: block;" class="text-justify"><%=tentang%></span>
@@ -113,7 +119,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="">Status</label>
+                                        <label for="" class="font-weight-bold">Status</label>
                                         <br><% if(!req.status || req.status == '0') {%>
                                             <span style="color: orange; font-weight: bold;">Menunggu</span>
                                             <%} else if(req.status == "1") {%>

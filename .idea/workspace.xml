@@ -26,11 +26,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f04989f3-7436-4886-b1bb-99ccba9f89c6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/images/gambar_umkm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/produkAll.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/detail-produk.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/produk.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/user/profil_umkm.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/detail-kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/detail-kegiatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/detail-produk.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/detail-produk.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/kegiatan.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/kegiatan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/produk.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/produk.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/produk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/requestMitra.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/requestMitra.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/dashboard-beta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/dashboard-beta.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/dashboard/detail_produk_beta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/detail_produk_beta.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/produk_beta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/produk_beta.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/request_mitra.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/request_mitra.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/navbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/navbar.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +96,7 @@
       <workItem from="1596024441867" duration="327000" />
       <workItem from="1596024854384" duration="57061000" />
       <workItem from="1596376810105" duration="633000" />
+      <workItem from="1596383539187" duration="656000" />
     </task>
     <servers />
   </component>
@@ -123,22 +140,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1593853532850" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1596339468711">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1596384202567">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596339468711" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1596339468710">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596384202567" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1596384202567">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596339468710" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1596339468709">
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596384202567" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1596384202566">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596339468709" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1596339468711">
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596384202566" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1596384202567">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596339468711" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596384202567" />
     <state x="478" y="0" width="641" height="824" key="find.popup" timestamp="1596098819585">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
