@@ -1,33 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Kegiatan Sipatorangon - UMKM TAPUT</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Miss+Fajardose&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/ionicons.min.css">
-
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-    
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
+  <%- include('./partials/head') %>
   <body>
     <div class="py-1 bg-black top">
     	<div class="container">
@@ -57,34 +30,17 @@
 		    </div>
 		  </div>
     </div>
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Kegiatan Sipatorangon</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Beranda</a></li>
-	        	<li class="nav-item"><a href="tentang.html" class="nav-link">Tentang</a></li>
-	        	<li class="nav-item"><a href="produk.html" class="nav-link">Produk</a></li>
-	        	<li class="nav-item active"><a href="kegiatan.html" class="nav-link">Kegiatan</a></li>
-	          <!-- <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> -->
-	          <li class="nav-item cta"><a href="sign-in.html" class="nav-link">Masuk atau Daftar</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
+    <!-- Start nav -->
+	  <%- include('./partials/navbar') %>
     <!-- END nav -->
     
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.webp');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.webp');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
             <h1 class="mb-2 bread">Kegiatan Sipatorangon</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Beranda <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="kegiatan.html">Kegiatan <i class="ion-ios-arrow-forward"></i></a></span> <span>Kegiatan Sipatorangon<i class="ion-ios-arrow-forward"></i></span></p>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Beranda <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="/kegiatan">Kegiatan <i class="ion-ios-arrow-forward"></i></a></span> <span>Kegiatan Sipatorangon<i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
       </div>
@@ -92,11 +48,6 @@
 
     <section class="mt-5">
 			<div class="container">
-
-                <div class="text-right">
-                    <a class="btn btn-black" href="tambah-kegiatan-beta.html">Edit</a>
-                    <button data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger" href="">Hapus</button>
-                </div>
 
                 <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -120,15 +71,14 @@
 
 				<div class="row">
           <div class="col-lg-12 ftco-animate">
-            <h2 class="text-center">Bupati Taput Tabur benih Ikan dan Ikuti Acara Adat Pature Baba ni Mual di Dusun Tunggul ni Huta I</h2>
-              <h6 class="mb-3 text-center">August 01, 2020</h6>
+            <h2 class="text-center"><%=data.judul%></h2>
+              <h6 class="mb-3 text-center"><%=data.tanggalDitambahkan%></h6>
             <p class="text-center">
-              <img width="960" height="640" src="https://res.cloudinary.com/dox0nkwax/image/upload/v1596297023/portal_1VzQpzRxuTNW_jnoe9z.jpg" alt="" class="img-fluid">
+              <img width="960" height="640" src="/kegiatan/gambar/<%=data._id%>" alt="" class="img-fluid">
             </p>
-            <p class="text-justify">Bupati Tapanuli Utara Drs. Nikson Nababan, M. Si didampingi Kadis Ketahanan Pangan dan Perikanan dan beberapa Pimpinan OPD tabur benih ikan dan ikuti adat "Pature Baba ni Mual" di Desa Banuaji I dusun Tunggul ni Huta I, Senin, 27/07/2020. </p>
-            <p class="text-justify">"Pandemi Covid-19 menunda banyak program pembangunan yang telah kita rencanakan, termasuk pembangunan jalan di desa ini. Mudah mudahan tahun depan bisa kita realisasikan. Saat ini target utama adalah sektor pelayanan kesehatan di tengah pandemi Covid-19 dengan melengkapi fasilitas rumah sakit Tarutung," ujar Bupati mengawali.</p>
-            <p class="text-justify">Selanjutnya Bupati menyampaikan bahwa setelah prioritas pembenahan Rumah Sakit Tarutung akibat pandemi ini.  Prioritas utama juga kita utamakan program ketahanan pangan, salah satunya pencetakan kolam, pemberian bantuan benih ikan, bibit padi, bibit jagung, bibit pohon berbuah seperti pohon apokat dan bibit lainnya," ujar Bupati menambahkan.</p>
-            <p class="mb-5 text-justify">"Pemulihan ekonomi menjadi langkah selanjutnya yang saya tempuh di tengah pandemi ini. Banyak masyarakat yang kehilangan mata pencaharian akibat pandemi ini. Untuk itu, kita tetap upayakan apa yang bisa dilakukan pemerintah untuk membantu masyarakat, termasuk diantaranya melalui bantuan dan program lainnya. Kita bersama sama menghadapi situasi ini dan Pemerintah akan melakukan yang terbaik untuk pemulihan ekonomi kita. Manfaatkan dengan baik bantuan ini, sehingga menghasilkan seperti harapan kita," ujar Bupati mengakhiri.</p>
+            <% data.formatted.forEach((keg) => { %>
+              <p class="text-justify"><%=keg%></p>
+            <% }) %>
             
 <!--            <div class="about-author d-flex p-4 bg-light">-->
 <!--              <div class="bio mr-5">-->
@@ -257,100 +207,14 @@
 			</div>
 		</section>
 
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container-fluid px-md-5 px-3">
-        <div class="row mb-5">
-          <div class="col-md-6 col-lg-3">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">UMKM TAPUT</h2>
-              <p>Sate Abang Adek tabo, Sate Parangkot dang tabo. Sude tabo. Danghuantusi. Kesana bagus, kesana indah. I Love Taput.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Call Center</h2>
-              <ul class="list-unstyled open-hours">
-                <li class="d-flex"><span>Senin</span><span>9:00 - 17:00</span></li>
-                <li class="d-flex"><span>Selasa</span><span>9:00 - 17:00</span></li>
-                <li class="d-flex"><span>Rabu</span><span>9:00 - 17:00</span></li>
-                <li class="d-flex"><span>Kamis</span><span>9:00 - 17:00</span></li>
-                <li class="d-flex"><span>Jumat</span><span>9:00 - 17:00</span></li>
-                <li class="d-flex"><span>Sabtu</span><span>9:00 - 14:00</span></li>
-                <li class="d-flex"><span>Minggu</span><span>Libur</span></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Terima Pemberitahuan Kami</h2>
-            	<p>Kalo ada yang sesuatu ntar kami email bossku. SIapa tau ada barang baru.</p>
-              <form action="#" class="subscribe-form">
-                <div class="form-group">
-                  <input type="text" class="form-control mb-2 text-center" placeholder="Masukkan Alamat Email">
-                  <input type="submit" value="Subscribe" class="form-control submit px-3">
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Instagram</h2>
-              <div class="thumb d-sm-flex">
-	            	<a href="#" class="thumb-menu img" style="background-image: url(images/insta-1.webp);">
-	            	</a>
-	            	<a href="#" class="thumb-menu img" style="background-image: url(images/insta-2.webp);">
-	            	</a>
-	            	<a href="#" class="thumb-menu img" style="background-image: url(images/insta-3.webp);">
-	            	</a>
-	            </div>
-	            <div class="thumb d-flex">
-	            	<a href="#" class="thumb-menu img" style="background-image: url(images/insta-4.webp);">
-	            	</a>
-	            	<a href="#" class="thumb-menu img" style="background-image: url(images/insta-5.webp);">
-	            	</a>
-	            	<a href="#" class="thumb-menu img" style="background-image: url(images/insta-6.webp);">
-	            	</a>
-	            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-
-			<p>Copyright &copy;2020 All rights reserved | Kp219B - Dinas KOMINFO Tapanuli Utara</p>
-			
-          </div>
-        </div>
-      </div>
-    </footer>
+    <%- include('./partials/footer') %>
   
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
+  <%- include('./partials/script') %>
     
   </body>
 </html>
