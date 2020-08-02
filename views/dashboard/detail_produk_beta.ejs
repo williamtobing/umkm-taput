@@ -86,11 +86,17 @@
 
                 <div class="about-author d-flex p-4 bg-light">
                     <div class="bio mr-5">
-                        <img style="width: 100%; max-width: 200px; height: auto; max-height: 200px;" src="/user/profile/gambar/<%= produk.owner._id %>" alt="Igambar owner" class="img-fluid mb-4">
+                        <img style="width: 100%; max-width: 200px; height: auto; max-height: 200px;" src="/dashboard/produk/gambar/<%=produk._id%>" alt="Igambar owner" class="img-fluid mb-4">
                     </div>
                     <div class="desc">
-                        <h3><%=produk.owner.namaLengkap%></h3>
-                        <p  class="text-justify"><%=produk.owner.deskripsi%></p>
+                        <h3><%=produk.owner.umkm.namaUMKM%></h3>
+                        <p  class="text-justify">
+                            <% if(!produk.owner.umkm.tentang)  {%>
+                                Belum ada deskripsi UMKM
+                            <%} else {%>
+                                <%=produk.owner.umkm.tentang%>
+                            <%}%>
+                        </p>
                     </div>
                 </div>
 

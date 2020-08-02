@@ -100,6 +100,20 @@ router.get('/edit/:id', auth, async (req, res) => {
     }
 });
 
+router.get('/gambar/:id', async (req, res) => {
+    try {
+        const produk = await Produk.findById(req.params.id).populate('owner').exec();
+        if(!produk || !produk.owner.umkm.gambarUMKM) {
+            throw new Error();
+        }
+        res.set('Content-Type', 'image/webp');
+        res.send(produk.owner.umkm.gambarUMKM);
+    } catch(e) {
+        res.json({
+            message : e.message
+        })
+    }
+});
 
 router.patch('/edit/:id', auth, upload.single('gambar'), async (req, res) => {
     let produk;
