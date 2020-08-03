@@ -8,6 +8,7 @@ const escapeRegex = require('./../function/search');
 const { auth, authIsAdmin } = require('./../middleware/auth');
 
 const Kegiatan = require('./../models/kegiatan');
+const Produk = require('./../models/produk');
 
 router.get('/kegiatan', auth, authIsAdmin,  async (req, res) => {
     try {
@@ -152,6 +153,32 @@ router.delete('/kegiatan/detail/delete/:id', auth, authIsAdmin,  async(req, res)
     }
 });
 
+// delete produk
+router.delete('/produk/delete/:id', auth, authIsAdmin, async (req, res) => {
+    try {
+        const produk = await Produk.findByIdAndDelete(req.params.id);
+        req.flash('success', 'Berhasil menghapus produk');
+        res.redirect('/produk');
+    } catch(e) {
+        req.flash('error', 'Gagal menghapus produk ' + e.message);
+        res.redirect('/produk');
+    }
+});
+
+// delete komentar
+router.put('/produk/delete/komentar/:idProduk/:id', auth, authIsAdmin, async (req, res) => {
+    try {
+        const produkKomentar = await Produk.updateMany({ },{ $pull: { komentar: { _id: req.params.id } } });
+        console.log(produkKomentar);
+        const produk = await Produk.findById(req.params.idProduk);
+        req.flash('success', 'Berhasil menghapus komentar');
+        res.redirect(`/produk/${produk._id}`);
+    } catch(e) {
+        console.log(e);
+        req.flash('error', 'Gagal menghapus komentar ' + e.message);
+        res.redirect('/produk');
+    }
+});
 
 
 module.exports = router;

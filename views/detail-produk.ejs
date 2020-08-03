@@ -75,6 +75,15 @@
 
 
                 <div class="pt-5 mt-5">
+                    <% if(user) {%>
+                        <% if(user.isAdmin) {%>
+                            <div class="text-right">
+                                <form id="hapusProdukForm" style="display: inline-block;" action="/admin/produk/delete/<%=produk._id%>?_method=DELETE" method="POST">
+                                    <button id="deleteBtn" type="submit" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger">Hapus Produk</button>
+                                </form>
+                            </div>
+                        <%}%>
+                    <%}%>
                     <h3 class="mb-5 h4 font-weight-bold p-4 bg-light"><%=commentLength%> Komentar</h3>
                     <ul class="comment-list">
                         <% produkKomentar.komentar.forEach(komen => {%>
@@ -96,7 +105,15 @@
                                         </h3>
                                         <div class="meta mb-2"><%=komen.tanggalDibuat%></div>
                                         <p><%=komen.isiKomentar%></p>
-                                        <p><a href="#commentFormContainer" class="reply">Reply</a></p>
+                                        <p>
+                                            <a href="#commentFormContainer" class="reply">Reply</a>
+                                            <% if(user.isAdmin) {%>
+                                                <form action="/admin/produk/delete/komentar/<%=produk._id%>/<%=komen._id%>?_method=PUT"  method="POST">
+                                                    <button type="submit" onClick="return confirm('Hapus komentar?')" style="display: inline; border:none; cursor: pointer; padding: 2px 7px; background-color: rgb(161, 45, 45); color: whitesmoke;" href="#commentFormContainer" class="reply">Delete</button>
+                                                </form>
+                                                
+                                            <%}%>
+                                        </p>
                                     </div>
                             </li>
                         <% }) %>
@@ -135,12 +152,35 @@
     <script>
         swal({
             icon : "success",
-            text : "Komentar ditambahkan",
+            text : "<%=successDone%>",
             title : "Sukses",
             button : "Okay"
         });
     </script>
 <%}%>
+
+<script>
+    const buttonDelete =  document.querySelector('#deleteBtn');
+        buttonDelete.addEventListener('click', (e) => {
+            e.preventDefault();
+            swal({
+                title: "Yakin menghapus produk?",
+                text: "Data akan dihapus secara permanen dan tidak dapat dipulihkan",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    var form = document.querySelector("#hapusProdukForm");
+                    form.submit();
+                } else {
+                    return false;
+                }
+            });
+        });
+        console.log(buttonDelete);
+</script>
 
 </body>
 </html>
