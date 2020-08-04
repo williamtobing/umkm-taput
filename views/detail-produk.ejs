@@ -107,11 +107,12 @@
                                         <p><%=komen.isiKomentar%></p>
                                         <p>
                                             <a href="#commentFormContainer" class="reply">Reply</a>
-                                            <% if(user.isAdmin) {%>
-                                                <form action="/admin/produk/delete/komentar/<%=produk._id%>/<%=komen._id%>?_method=PUT"  method="POST">
-                                                    <button type="submit" onClick="return confirm('Hapus komentar?')" style="display: inline; border:none; cursor: pointer; padding: 2px 7px; background-color: rgb(161, 45, 45); color: whitesmoke;" href="#commentFormContainer" class="reply">Delete</button>
-                                                </form>
-                                                
+                                            <% if(user) {%>
+                                                <% if(user.isAdmin) {%>
+                                                    <form action="/admin/produk/delete/komentar/<%=produk._id%>/<%=komen._id%>?_method=PUT"  method="POST">
+                                                        <button type="submit" onClick="return confirm('Hapus komentar?')" style="display: inline; border:none; cursor: pointer; padding: 2px 7px; background-color: rgb(161, 45, 45); color: whitesmoke;" href="#commentFormContainer" class="reply">Delete</button>
+                                                    </form>
+                                                <%}%>
                                             <%}%>
                                         </p>
                                     </div>
