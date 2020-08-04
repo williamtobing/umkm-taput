@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head')  %> 
+<body>
+<div class="py-1 bg-black top">
+    <div class="container">
+        <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+            <div class="col-lg-12 d-block">
+                <div class="row d-flex">
+                    <marquee direction="right">
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div> -->
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+                            <!-- <span class="text">+ 1235 2355 98</span> -->
+                            <span class="text"></span>
+                        </div>
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div> -->
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+                            <!-- <span class="text">youremail@email.com</span> -->
+                            <span class="text">This website is still under development.</span>
+                        </div>
+                        <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
+                            <!-- <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span> <span>8:00AM - 9:00PM</span></p> -->
+                            <p class="mb-0 register-link"><span></span> <span></span> <span></span></p>
+                        </div>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Start NAv -->
+<%- include('../partials/navbar')  %>
+<!-- END nav -->
+
+<section class="hero-wrap" style="background-image: url('/images/bg_1.webp');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="hide mb-2 bread">.</h1>
+                <p class="hide breadcrumbs">.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-no-pt ftco-no-pb mt-3">
+
+    <div class="container mb-5">
+
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="bread">Data Request Mitra</h1>
+            </div>
+        </div>
+
+        <div class="container-fluid px-0">
+            <div class="row d-flex no-gutters ftco-animate mt-3">
+
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Waktu</th>
+                        <th colspan="2" scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% listData.forEach((data, index) =>{ %>
+                            <tr>
+                                <th scope="row"><%=index +1%></th>
+                                <td><%=data.owner.namaLengkap%></td>
+                                <td><%=data.tanggalDibuat%></td>
+                                <td>
+                                    <% if(!data.status || data.status == '0') {%>
+                                        <span style="color: orange; font-weight: bold;">Menunggu</span>
+                                    <%} else if(data.status == "1") {%>
+                                        <span style="color: green; font-weight: bold;">Diterima</span>
+                                    <%} else if(data.status == "9") {%>
+                                        <span style="color: red; font-weight: bold;">Ditolak</span>
+                                    <%}%>
+                                </td>
+                                <td><span style="cursor: pointer" class="icon icon-edit" data-toggle="modal" data-target=".bd-example-modal-lg<%=index%>"></span></td>
+                            </tr>
+                            <!-- MODAL -->
+                            <div class="modal bd-example-modal-lg<%=index%>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Data Calon Mitra</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Nama Mitra</label>
+                                                    <br><%=data.owner.namaLengkap%>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Nama UMKM</label>
+                                                    <br><%=data.namaUMKM%>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">NIK</label>
+                                                    <br><%=data.nik%>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Foto KTP</label>
+                                                    <br><a href="/dashboard/request/mitra/download/<%=data._id%>"><img src="/dashboard/request/mitra/download/<%=data._id%>" alt="Foto KTP.jpngwebp" width="200px"></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Tentang</label>
+                                                    <br><%=data.tentang%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <% if(data.status !== "1" && data.status !== "9") {%>
+                                                <form action="/dashboard/request/mitra/update/<%=data._id%>?_method=PATCH" method="POST">
+                                                    <button type="submit" name="status" value="9" class="btn btn-danger">Tolak</button>
+                                                    <button type="submit" name="status" value="1" class="btn btn-success">Terima</button>
+                                                </form>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <%})%>
+                    </tbody>
+                </table>
+
+                
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!--<footer class="ftco-footer ftco-bg-dark ftco-section">-->
+<!--    <div class="container-fluid px-md-5 px-3">-->
+<!--        <div class="row mb-5">-->
+<!--            <div class="col-md-6 col-lg-3">-->
+<!--                <div class="ftco-footer-widget mb-4">-->
+<!--                    <h2 class="ftco-heading-2">UMKM TAPUT</h2>-->
+<!--                    <p>Sate Abang Adek tabo, Sate Parangkot dang tabo. Sude tabo. Danghuantusi. Kesana bagus, kesana indah. I Love Taput.</p>-->
+<!--                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">-->
+<!--                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>-->
+<!--                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>-->
+<!--                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-6 col-lg-3">-->
+<!--                <div class="ftco-footer-widget mb-4">-->
+<!--                    <h2 class="ftco-heading-2">Call Center</h2>-->
+<!--                    <ul class="list-unstyled open-hours">-->
+<!--                        <li class="d-flex"><span>Senin</span><span>9:00 - 17:00</span></li>-->
+<!--                        <li class="d-flex"><span>Selasa</span><span>9:00 - 17:00</span></li>-->
+<!--                        <li class="d-flex"><span>Rabu</span><span>9:00 - 17:00</span></li>-->
+<!--                        <li class="d-flex"><span>Kamis</span><span>9:00 - 17:00</span></li>-->
+<!--                        <li class="d-flex"><span>Jumat</span><span>9:00 - 17:00</span></li>-->
+<!--                        <li class="d-flex"><span>Sabtu</span><span>9:00 - 14:00</span></li>-->
+<!--                        <li class="d-flex"><span>Minggu</span><span>Libur</span></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-6 col-lg-3">-->
+<!--                <div class="ftco-footer-widget mb-4">-->
+<!--                    <h2 class="ftco-heading-2">Terima Pemberitahuan Kami</h2>-->
+<!--                    <p>Kalo ada yang sesuatu ntar kami email bossku. SIapa tau ada barang baru.</p>-->
+<!--                    <form action="#" class="subscribe-form">-->
+<!--                        <div class="form-group">-->
+<!--                            <input type="text" class="form-control mb-2 text-center" placeholder="Masukkan Alamat Email">-->
+<!--                            <input type="submit" value="Subscribe" class="form-control submit px-3">-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-6 col-lg-3">-->
+<!--                <div class="ftco-footer-widget mb-4">-->
+<!--                    <h2 class="ftco-heading-2">Instagram</h2>-->
+<!--                    <div class="thumb d-sm-flex">-->
+<!--                        <a href="#" class="thumb-menu img" style="background-image: url(images/insta-1.webp);">-->
+<!--                        </a>-->
+<!--                        <a href="#" class="thumb-menu img" style="background-image: url(images/insta-2.webp);">-->
+<!--                        </a>-->
+<!--                        <a href="#" class="thumb-menu img" style="background-image: url(images/insta-3.webp);">-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                    <div class="thumb d-flex">-->
+<!--                        <a href="#" class="thumb-menu img" style="background-image: url(images/insta-4.webp);">-->
+<!--                        </a>-->
+<!--                        <a href="#" class="thumb-menu img" style="background-image: url(images/insta-5.webp);">-->
+<!--                        </a>-->
+<!--                        <a href="#" class="thumb-menu img" style="background-image: url(images/insta-6.webp);">-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-12 text-center">-->
+
+<!--                <p>Copyright &copy;2020 All rights reserved | Kp219B - Dinas KOMINFO Tapanuli Utara</p>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+<%- include('../partials/script')  %>
+
+<% if(successDone.length > 0) {%>
+    <script>
+        swal({
+            title : "Success",
+            icon: "success",
+            text : "<%=successDone%>",
+            button: "Okay",
+        });
+    </script>
+<%}%>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') %>
+<body>
+<div class="py-1 bg-black top">
+    <div class="container">
+        <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+            <div class="col-lg-12 d-block">
+                <div class="row d-flex">
+                    <marquee direction="right">
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div> -->
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+                            <!-- <span class="text">+ 1235 2355 98</span> -->
+                            <span class="text"></span>
+                        </div>
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div> -->
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+                            <!-- <span class="text">youremail@email.com</span> -->
+                            <span class="text">This website is still under development.</span>
+                        </div>
+                        <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
+                            <!-- <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span> <span>8:00AM - 9:00PM</span></p> -->
+                            <p class="mb-0 register-link"><span></span> <span></span> <span></span></p>
+                        </div>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Start Nav -->
+    <%- include('./partials/navbar') %>
+    <!-- END nav -->
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.webp');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <h1 class="mb-2 bread">Produk Sipatorangon</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="/">Beranda <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="/produk">Produk <i class="ion-ios-arrow-forward"></i></a></span> <span>Produk Sipatorangon<i class="ion-ios-arrow-forward"></i></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 ftco-animate">
+                <h2 class="mb-3 text-center"><%=produk.judul%></h2>
+                <p class="text-center">
+                    <img style="width: 100%; max-width: 450px; height: auto; max-height: 450px;" src="/produk/gambar/<%=produk._id%>" alt="" class="img-fluid">
+                </p>
+                <% produk.formatted.forEach(produk => { %>
+                    <p class="text-justify"><%=produk%></p>
+                <% }) %>
+                
+
+                <div class="about-author d-flex p-4 bg-light">
+                    <div class="bio mr-5">
+                        <% if(!produk.owner.umkm.gambarUMKM) {%>
+                            <img style="width: 100%; max-width: 200px; height: auto; max-height: 200px;" src="/images/gambar_umkm.png" alt="Image placeholder" class="img-fluid mb-4">
+                        <%} else {%>
+                            <img style="width: 100%; max-width: 200px; height: auto; max-height: 200px;" src="/produk/gambar/mitra/<%=produk._id%>" alt="Image placeholder" class="img-fluid mb-4">
+                        <%}%>
+                    </div>
+                    <div class="desc">
+                        <h3><%=produk.owner.umkm.namaUMKM%></h3>
+                        <p  class="text-justify"><%=produk.owner.umkm.tentang%></p>
+                    </div>
+                </div>
+
+
+                <div class="pt-5 mt-5">
+                    <% if(user) {%>
+                        <% if(user.isAdmin) {%>
+                            <div class="text-right">
+                                <form id="hapusProdukForm" style="display: inline-block;" action="/admin/produk/delete/<%=produk._id%>?_method=DELETE" method="POST">
+                                    <button id="deleteBtn" type="submit" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger">Hapus Produk</button>
+                                </form>
+                            </div>
+                        <%}%>
+                    <%}%>
+                    <h3 class="mb-5 h4 font-weight-bold p-4 bg-light"><%=commentLength%> Komentar</h3>
+                    <ul class="comment-list">
+                        <% produkKomentar.komentar.forEach(komen => {%>
+                            <li class="comment">
+                                <div class="vcard bio">
+                                    <% if(komen.ownerKomentar.gambar) {%>
+                                        <img src="/user/profile/gambar/<%=komen.ownerKomentar._id%>" alt="Image placeholder">
+                                    <%} else {%>
+                                        <img src="/images/profil1.PNG" alt="Image placeholder">
+                                    <%}%>
+                                </div>
+                                
+                                    <div class="comment-body">
+                                        <h3>
+                                            <%= komen.ownerKomentar.namaLengkap %>
+                                            <% if(komen.ownerKomentar.umkm.namaUMKM) {%>
+                                                <span style="color: gray;">[<%=komen.ownerKomentar.umkm.namaUMKM%>]</span>
+                                            <%}%>
+                                        </h3>
+                                        <div class="meta mb-2"><%=komen.tanggalDibuat%></div>
+                                        <p><%=komen.isiKomentar%></p>
+                                        <p>
+                                            <a href="#commentFormContainer" class="reply">Reply</a>
+                                            <% if(user) {%>
+                                                <% if(user.isAdmin) {%>
+                                                    <form action="/admin/produk/delete/komentar/<%=produk._id%>/<%=komen._id%>?_method=PUT"  method="POST">
+                                                        <button type="submit" onClick="return confirm('Hapus komentar?')" style="display: inline; border:none; cursor: pointer; padding: 2px 7px; background-color: rgb(161, 45, 45); color: whitesmoke;" href="#commentFormContainer" class="reply">Delete</button>
+                                                    </form>
+                                                <%}%>
+                                            <%}%>
+                                        </p>
+                                    </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                    <!-- END comment-list -->
+
+                    <div class="comment-form-wrap pt-5" id="commentFormContainer">
+                        <h3 class="mb-5 h4 font-weight-bold p-4 bg-light">Leave a comment</h3>
+                        <form action="/produk/comment/<%=produk._id%>" class="p-4 p-md-5 bg-light" method="POST" id="commentForm">
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <input type="hidden" name="ownerKomentar" value="<%if(user!==undefined){%><%=user._id%><%}%>" >
+                                <textarea required name="isiKomentar" id="message" cols="30" rows="10" class="form-control" id="isiKomentar"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('./partials/footer') %>
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+<%- include('./partials/script') %>
+
+<% if(successDone.length > 0) {%>
+    <script>
+        swal({
+            icon : "success",
+            text : "<%=successDone%>",
+            title : "Sukses",
+            button : "Okay"
+        });
+    </script>
+<%}%>
+
+<script>
+    const buttonDelete =  document.querySelector('#deleteBtn');
+        buttonDelete.addEventListener('click', (e) => {
+            e.preventDefault();
+            swal({
+                title: "Yakin menghapus produk?",
+                text: "Data akan dihapus secara permanen dan tidak dapat dipulihkan",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    var form = document.querySelector("#hapusProdukForm");
+                    form.submit();
+                } else {
+                    return false;
+                }
+            });
+        });
+        console.log(buttonDelete);
+</script>
+
+</body>
+</html>

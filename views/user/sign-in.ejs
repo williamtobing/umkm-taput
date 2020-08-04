@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head') %>
+  <body>
+    <div class="py-1 bg-black top">
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+	    		<div class="col-lg-12 d-block">
+		    		<div class="row d-flex">
+						<marquee direction="right">
+		    			<div class="col-md pr-4 d-flex topper align-items-center">
+					    	<!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div> -->
+							<div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+							<!-- <span class="text">+ 1235 2355 98</span> -->
+							<span class="text"></span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div> -->
+							<div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+							<!-- <span class="text">youremail@email.com</span> -->
+							<span class="text">This website is still under development.</span>
+					    </div>
+					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
+						    <!-- <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span> <span>8:00AM - 9:00PM</span></p> -->
+							<p class="mb-0 register-link"><span></span> <span></span> <span></span></p>
+						</div>
+						</marquee>
+				    </div>
+			    </div>
+		    </div>
+		  </div>
+	</div>
+	<!-- Start Nav -->
+	<%- include('../partials/navbar') %>
+    <!-- END nav -->
+    
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.webp');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Masuk atau Daftar</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Beranda <i class="ion-ios-arrow-forward"></i></a></span> <span>Masuk atau Daftar <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+	
+		<section class="ftco-section ftco-no-pt ftco-no-pb testimony-section img" style="background-image: url(/images/bg_5.webp);">
+			<div class="overlay"></div>
+		  <div class="container">
+			<div class="container-fluid px-0">
+				<div class="row d-flex no-gutters">
+          <!-- <div class="col-md-6 d-flex align-items-stretch pb-5 pb-md-0"> -->
+				<!-- <div id="map"></div> -->
+				<!-- <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d510380.7352496191!2d98.78926361258378!3d2.0157131379017854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e6afe1293bcf5%3A0x3039d80b220d160!2sKabupaten%20Tapanuli%20Utara%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1590400001744!5m2!1sid!2sid" width="" height="" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
+			<div class="col-md-12 order-md-last ftco-animate makereservation p-4 p-md-5 pt-5">
+				<div class="py-md-5">
+					<div class="heading-section ftco-animate mb-5">
+						<span class="subheading"></span>
+					  <h2 class="mb-4 text-center">MASUK</h2>
+					</div>
+					<form class="container-form" action="/user/login" method="POST">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="">Email</label>
+									<input type="text" name="email" class="form-control" placeholder="Masukkan email disini">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="">Password</label>
+									<input type="password" name="password" class="form-control" placeholder="Masukkan password disini">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-check">
+									<input type="checkbox" name="rememberMe" class="form-check-input mt-2" id="exampleCheck1">
+									<label class="form-check-label" for="exampleCheck1">Remember Me</label>
+								</div>
+							</div>
+							<div class="col-md-12 mt-3">
+								<div class="form-group text-center">
+									<button type="submit" class="btn btn-primary py-3 px-5">Masuk</button>
+									<br><br>
+									<a class="link" href="/user/register">Daftar</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+		  </div>
+        </div>
+			</div>
+		  </div>
+		</section>
+
+	<!-- Start Footer -->
+	<%- include('../partials/footer') %>
+	<!-- End Footer -->
+  
+  
+
+  	<!-- loader -->
+  	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+  	<%- include('../partials/script') %>
+
+	<% if(successDone.length > 0) {%>
+		<script>
+			swal({
+				title : "Success",
+				icon: "success",
+				text : "<%=successDone%>",
+				button: "Okay",
+			});
+		</script>
+	<%}%>
+
+	<% if(errorAuth.length > 0) {%>
+		<script>
+			swal({
+				title : "Warning",
+				icon: "warning",
+				text : "<%=errorAuth%>",
+				button: "Okay",
+			});
+		</script>
+	<%}%>
+
+	<% if(errorFailed.length > 0) {%>
+		<script>
+			swal({
+				title : "Error",
+				icon: "error",
+				text : "<%=errorFailed%>",
+				button: "Okay",
+			});
+		</script>
+	<%}%>
+
+	
+    
+  </body>
+</html>

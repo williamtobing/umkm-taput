@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+<div class="py-1 bg-black top">
+    <div class="container">
+        <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+            <div class="col-lg-12 d-block">
+                <div class="row d-flex">
+                    <marquee direction="right">
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div> -->
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+                            <!-- <span class="text">+ 1235 2355 98</span> -->
+                            <span class="text"></span>
+                        </div>
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <!-- <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div> -->
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"></div>
+                            <!-- <span class="text">youremail@email.com</span> -->
+                            <span class="text">This website is still under development.</span>
+                        </div>
+                        <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
+                            <!-- <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span> <span>8:00AM - 9:00PM</span></p> -->
+                            <p class="mb-0 register-link"><span></span> <span></span> <span></span></p>
+                        </div>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Start nav -->
+<%- include('../partials/navbar') %>
+<!-- END nav -->
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.webp');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-2 bread">Manajemen Kegiatan</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/">Dashboard <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="/admin/kegiatan">Kegiatan <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"></span> <span>Manajemen Kegiatan <i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-no-pt ftco-no-pb testimony-section img" style="background-image: url(/images/bg_5.webp);">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="container-fluid px-0">
+            <div class="row d-flex no-gutters">
+                <div class="col-lg-12 form ftco-animate">
+                    <form action="/admin/kegiatan/tambah" method="POST" enctype="multipart/form-data">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Judul</label>
+                                <input type="text" name="judul" class="form-control" placeholder="Masukkan judul kegiatan disini" required="">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Gambar Kegiatan</label>
+                                <input type="file" name="gambar" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Deskripsi Kegiatan</label>
+                                <textarea type="text" name="deskripsiKegiatan" class="form-control" rows="20" placeholder="Masukkan deskripsi kegiatan disini" required=""></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <!--								<a href="#" class="btn btn-primary py-3 px-5">Tambah</a>-->
+                                <button type="submit" class="btn btn-primary py-3 px-5">Tambah</button>
+                                <!-- <button class="btn btn-custom">Batal</button> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+<%- include('../partials/script') %>
+
+<% if(errorFailed.length > 0) {%>
+    <script>
+        swal({
+            title : "Error",
+            icon : "error",
+            text : "<%=errorFailed%>",
+            button : "Okay"
+        });
+    </script>
+<%}%>
+
+</body>
+</html>
