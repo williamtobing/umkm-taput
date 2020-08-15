@@ -15,7 +15,12 @@ router.get('/', auth, authIsMitra, async (req, res) => {
     try {
         if(!req.query.search) {
             await req.user.populate({
-                path : 'produk_me'
+                path : 'produk_me',
+                options : {
+                    sort : {
+                        'createdAt' : 'desc'
+                    }
+                }
             }).execPopulate();
             req.user.produk_me.forEach((produk) => {
                 produk.tanggalDitambahkan = moment(produk.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
@@ -26,7 +31,7 @@ router.get('/', auth, authIsMitra, async (req, res) => {
             });
         } else {
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            await req.user.populate({ path : 'produk_me', match : {judul : regex} }).execPopulate();
+            await req.user.populate({ path : 'produk_me', options : { sort : { 'createdAt' : 'desc' } }, match : {judul : regex} }).execPopulate();
             res.render('dashboard/produk_beta', {
                 title : "Produk",
                 listProduk : req.user.produk_me
