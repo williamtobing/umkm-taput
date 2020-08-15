@@ -12,13 +12,13 @@ router.get('/', async (req, res) => {
     try {
         let produk;
         if(!req.query.search) {
-            produk = await Produk.find({}).populate('owner').exec();
+            produk = await Produk.find({}).sort({createdAt : 'desc'}).populate('owner').exec();
             produk.forEach(prod => {
                 prod.tanggalDitambahkan = moment(prod.createdAt).tz('Asia/Jakarta').locale('id').format('LL');
             });
         } else {
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            produk = await Produk.find({ judul : regex}).populate('owner').exec();
+            produk = await Produk.find({ judul : regex}).sort({createdAt : 'desc'}).populate('owner').exec();
         }
         res.render('produk', {
             title : "Produk",
