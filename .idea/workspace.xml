@@ -27,8 +27,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f04989f3-7436-4886-b1bb-99ccba9f89c6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/produk_beta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/produk_beta.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/produk.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/produk.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/user/sign-in.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/sign-in.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/sign-up.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/sign-up.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
