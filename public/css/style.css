@@ -4022,6 +4022,10 @@ input[type="button"].btn-block {
   .accordion .card .card-header {
     margin-bottom: -1px; }
 
+.hide {
+  opacity: 0;
+}
+
 .breadcrumb {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9332,6 +9336,11 @@ textarea.form-control {
         .comment-list li .comment-body .reply:hover {
           color: #fff;
           background: black; }
+.box-form {
+  background-color: #fafafa;
+  border: 5px solid #bebebe;
+}
+
 
 .search-form {
   background: #fafafa;
