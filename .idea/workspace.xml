@@ -25,7 +25,19 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f04989f3-7436-4886-b1bb-99ccba9f89c6" name="Default Changelist" comment="" />
+    <list default="true" id="f04989f3-7436-4886-b1bb-99ccba9f89c6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/detail-kegiatan-beta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/detail-kegiatan-beta.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/kegiatan-beta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/kegiatan-beta.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/detail_produk_beta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/detail_produk_beta.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/edit_produk_beta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/edit_produk_beta.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/produk_beta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/produk_beta.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/tambah_produk_beta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/tambah_produk_beta.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/detail-kegiatan.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/detail-kegiatan.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/detail-produk.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/detail-produk.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/kegiatan.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/kegiatan.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/produk.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/produk.ejs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +88,7 @@
       <workItem from="1596376810105" duration="633000" />
       <workItem from="1596383539187" duration="656000" />
       <workItem from="1596523413117" duration="23000" />
-      <workItem from="1597659688304" duration="382000" />
+      <workItem from="1597659688304" duration="3899000" />
     </task>
     <servers />
   </component>
