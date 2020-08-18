@@ -4778,6 +4778,13 @@ a.close.disabled {
 
 /* MODAL CUSTOM */
 
+.truncate {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 /* The Modal (background) */
 /*.modal {*/
 /*  display: none; !* Hidden by default *!*/
