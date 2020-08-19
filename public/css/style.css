@@ -4807,6 +4807,12 @@ a.close.disabled {
   -webkit-box-orient: vertical;
 }
 
+.fix-detail {
+  width: 858px;
+  height: 480px;
+  object-fit: cover
+}
+
 /* The Modal (background) */
 /*.modal {*/
 /*  display: none; !* Hidden by default *!*/

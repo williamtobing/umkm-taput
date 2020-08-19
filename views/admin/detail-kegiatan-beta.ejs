@@ -59,7 +59,7 @@
                 <h2 class="mb-3 text-center"><%=data.judul%></h2>
                 <h6 class="mb-3 text-center"><%=data.tanggalDiupload%></h6>
                 <p class="text-center">
-                    <img style="width: 100%; max-width: 858px; height: auto; max-height: 480px;" src="/admin/kegiatan/gambar/<%=data._id%>" alt="" class="img-fluid">
+                    <img src="/admin/kegiatan/gambar/<%=data._id%>" alt="" class="fix-detail img-fluid">
                 </p>
                 <% data.formatted.forEach(keg => { %>
                     <p class="text-justify"><%=keg%></p>
