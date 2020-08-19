@@ -48,11 +48,15 @@
 
 <section class="mt-3">
     <div class="container">
-        <div class="text-right">
-            <form id="hapusProdukForm" style="display: inline-block;" action="#" method="POST">
-                <button id="deleteBtn" type="submit" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger">Hapus</button>
-            </form>
-        </div>
+        <% if(user) {%>
+            <% if(user.isAdmin) {%>
+            <div class="text-right">
+                <form id="hapusProdukForm" style="display: inline-block;" action="/admin/produk/delete/<%=produk._id%>?_method=DELETE" method="POST">
+                    <button id="deleteBtn" type="submit" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger">Hapus</button>
+                </form>
+            </div>
+            <%}%>
+        <%}%>
 
         <div class="row">
             <div class="col-lg-12 ftco-animate">
