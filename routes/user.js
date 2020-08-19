@@ -11,7 +11,7 @@ const User = require('./../models/users');
 
 router.get('/register', (req, res) => {
     res.render('user/sign-up', {
-        title : "Masuk atau Daftar - UMKM TAPUT"
+        title : "Daftar"
     });
 });
 
@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
 
 router.get('/login', (req, res) => {
     res.render('user/sign-in', {
-        title : "Masuk atau Daftar - UMKM TAPUT"
+        title : "Masuk"
     });
 });
 

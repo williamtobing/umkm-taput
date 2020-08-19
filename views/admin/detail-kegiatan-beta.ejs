@@ -34,19 +34,19 @@
 <%- include('../partials/navbar') %>
 <!-- END nav -->
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_1.webp');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap" style="background-image: url('/images/bg_1.webp');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-2 bread">Kegiatan Sipatorangon</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="/">Dashboard <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="/admin/kegiatan">Kegiatan <i class="ion-ios-arrow-forward"></i></a></span> <span>Kegiatan Sipatorangon<i class="ion-ios-arrow-forward"></i></span></p>
+                <h1 class="hide mb-2 bread">.</h1>
+                <p class="hide breadcrumbs">.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="mt-5 mb-5">
+<section class="mt-3 mb-5">
     <div class="container">
         <div class="text-right">
             <a class="btn btn-black" href="/admin/kegiatan/detail/edit/<%=data._id%>">Edit</a>
@@ -59,7 +59,7 @@
                 <h2 class="mb-3 text-center"><%=data.judul%></h2>
                 <h6 class="mb-3 text-center"><%=data.tanggalDiupload%></h6>
                 <p class="text-center">
-                    <img style="width: 100%; max-width: 858px; height: auto; max-height: 480px;" src="/admin/kegiatan/gambar/<%=data._id%>" alt="" class="img-fluid">
+                    <img src="/admin/kegiatan/gambar/<%=data._id%>" alt="" class="fix-detail img-fluid">
                 </p>
                 <% data.formatted.forEach(keg => { %>
                     <p class="text-justify"><%=keg%></p>

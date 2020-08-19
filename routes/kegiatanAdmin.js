@@ -62,7 +62,7 @@ router.get('/kegiatan/detail/edit/:id', auth, authIsAdmin, async (req, res) => {
     try {
         const kegiatan = await Kegiatan.findById(req.params.id);
         res.render('admin/edit-kegiatan-beta', {
-            title : "Admin Tambah Kegiatan",
+            title : "Edit Kegiatan",
             data : kegiatan
         });
     } catch(e) {
